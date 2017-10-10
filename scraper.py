@@ -14,8 +14,47 @@ def strip_accents(s):
     )
 
 
+def is_float(x):
+    try:
+        float(x)
+    except ValueError:
+        return False
+    else:
+        return True
+
+
+def is_int(x):
+    try:
+        a = float(x)
+        b = int(a)
+    except ValueError:
+        return False
+    else:
+        return a == b
+
+
 def normalize_value(value):
-    return value.strip()
+    if isinstance(value, str):
+        value = (
+            value
+            .strip()
+            .replace('%', '')
+            .replace(',', '')
+        )
+
+    try:
+        if is_int(value):
+            return int(value)
+    except:
+        pass
+
+    try:
+        if is_float(value):
+            return float(value)
+    except:
+        pass
+
+    return value
 
 
 def normalize_path(path):
@@ -30,6 +69,11 @@ def normalize_path(path):
 
 def normalize_label(label):
     return strip_accents(label).strip()
+
+
+def normalize_last_updated(last_updated):
+    if last_updated:
+        return last_updated.strip()
 
 
 class StatusPRSpider(scrapy.Spider):
@@ -59,6 +103,18 @@ class StatusPRSpider(scrapy.Spider):
                 path = card.css(
                     '.card-header > h2::attr(data-i18n)').extract_first()
 
+            last_updated_text = card.css(
+                '.p-small-spacing > .text-muted::text').extract()
+
+            if not last_updated_text:
+                last_updated_text = card.css(
+                    '.list-inline li .text-muted::text').extract()
+
+            if len(last_updated_text) > 1:
+                last_updated = last_updated_text[1]
+            else:
+                last_updated = None
+
             if value:
                 if not path:
                     path = label.lower()
@@ -66,11 +122,13 @@ class StatusPRSpider(scrapy.Spider):
                 label = normalize_label(label)
                 path = normalize_path(path)
                 value = normalize_value(value)
+                last_updated = normalize_last_updated(last_updated)
 
                 yield {
                     'label': label,
                     'path': path,
-                    'value': value
+                    'value': value,
+                    'last_updated_at': last_updated
                 }
 
 
@@ -103,6 +161,7 @@ class MongoDBPipeline(object):
 
 if __name__ == '__main__':
     process = CrawlerProcess({
+        'LOG_ENABLED': True,
         'FEED_URI': 'stdout:',
         'FEED_FORMAT': 'json',
         'ITEM_PIPELINES': {
