@@ -63,6 +63,7 @@ def normalize_path(path):
         .strip()
         .replace('card.', '')
         .replace('nav.', '')
+        .replace('.title', '')
         .replace(' ', '.').strip()
     )
 
