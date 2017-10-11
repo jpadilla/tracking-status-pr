@@ -73,7 +73,7 @@ def normalize_label(label):
 
 def normalize_last_updated(last_updated):
     if last_updated:
-        return last_updated.strip()
+        return last_updated.strip().replace(': ', '')
 
 
 class StatusPRSpider(scrapy.Spider):
