@@ -3,7 +3,7 @@ import csv
 import datetime
 
 import pymongo
-from flask import Flask, Response, jsonify, json
+from flask import Flask, Response, jsonify, json, request, render_template
 
 
 class JSONEncoder(json.JSONEncoder):
@@ -34,22 +34,41 @@ class Echo(object):
         return value
 
 
+def request_wants_json():
+    best = request.accept_mimetypes \
+        .best_match(['application/json', 'text/html'])
+    return best == 'application/json' and \
+        request.accept_mimetypes[best] > \
+        request.accept_mimetypes['text/html']
+
+
 def get_stats(path):
     return db.stats.find({'path': path}).sort('created_at')
 
+
 @app.route('/')
 def index():
-    pipeline = [{'$group': {'_id': '$path'}}]
-    paths = db.stats.aggregate(pipeline)
-    data = {}
-
-    for path in paths:
-        data[path['_id']] = {
-            'json': '/stats/{}.json'.format(path['_id']),
-            'csv': '/stats/{}.csv'.format(path['_id'])
+    paths = db.stats.aggregate([
+        {
+            '$group': {
+                '_id': {'path': '$path', 'label': '$label'}
+            }
         }
+    ])
 
-    return jsonify({'data': data})
+    if request_wants_json():
+        data = {}
+
+        for path_obj in paths:
+            path = path_obj['_id']['path']
+            data[path] = {
+                'json': '/stats/{}.json'.format(path),
+                'csv': '/stats/{}.csv'.format(path)
+            }
+
+        return jsonify({'data': data})
+
+    return render_template('index.html', paths=paths, request_url=request.url)
 
 
 @app.route('/stats/<path>.json')

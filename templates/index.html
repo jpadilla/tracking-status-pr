@@ -1,0 +1,3 @@
+{% for path in paths %}
+  <p><a href="https://www.charted.co/?%7B%22dataUrl%22%3A%22{{ request.url }}stats/{{ path._id.path }}.csv%22%7D">{{ path._id.label }}</a></p>
+{% endfor %}
