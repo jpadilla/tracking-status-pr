@@ -6,6 +6,32 @@ import pymongo
 from flask import Flask, Response, jsonify, json, request, render_template
 
 
+CHARTED = {
+    'flight': '89e4b8e',
+    'aaa': 'db5ef87',
+    'goverment.mail': 'e66b520',
+    'comercios.procesando.pan': '187f5c3',
+    'cooperatives': '63c6544',
+    'bank': 'f740a32',
+    'container': '298d822',
+    'atms': 'eb1da4f',
+    'pharmacy': 'b988843',
+    'dialysis': '0afa169',
+    'ama': '527e337',
+    'port': '725a5f8',
+    'pet': '47c1167',
+    'supermarket': 'bd15b67',
+    'gas': '5bcaff6',
+    'aee': '1a99347',
+    'telecomunication': '12d4d4d',
+    'antenna': 'bbda136',
+    'shelter': '7390428',
+    'refugee': 'dae5290',
+    'tower': '53287b4',
+    'hospital': 'eabacf5'
+}
+
+
 class JSONEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, datetime.datetime):
@@ -68,7 +94,14 @@ def index():
 
         return jsonify({'data': data})
 
-    return render_template('index.html', paths=paths, request_url=request.url)
+    data = []
+
+    for path_obj in paths:
+        path = path_obj['_id']['path']
+        path_obj['charted'] = CHARTED[path]
+        data.append(path_obj)
+
+    return render_template('index.html', paths=data, request_url=request.url)
 
 
 @app.route('/stats/<path>.json')
