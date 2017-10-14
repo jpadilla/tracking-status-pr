@@ -4,6 +4,14 @@ This tool scrapes status.pr every hour and keeps tracks of changing metrics in o
 
 ## Running
 
+### Web
+
 ```
 $ MONGODB_URI='mongodb://localhost/tracking-status-pr' FLASK_DEBUG=1 FLASK_APP=app/app.py flask run
+```
+
+### Scraper
+
+```
+$ MONGODB_URI='mongodb://localhost/tracking-status-pr' python scraper.py
 ```
