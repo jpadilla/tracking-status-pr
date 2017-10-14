@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.css">
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="card text-center my-2">
+            <div class="card-block">
+              <h1 class="card-title">Tracking status.pr</h1>
+              <p class="card-text">This tool scrapes <a target="_blank" href="http://status.pr/">status.pr</a> every hour and keeps tracks of changing metrics in order to help visualize and measure progress. Data is also made available in CSV and JSON formats.</p>
+              <a href="#" class="card-link">Source code</a>
+            </div>
+            </div>
+        </div>
+      </div>
+      {% for path in paths %}
+        <div class="row">
+          <div class="col">
+            <div class="card text-center my-2">
+              <div class="card-block">
+                <h4 class="card-title">{{ path.label }}</h4>
+                <div id="chart-{{ path.slug }}" style="height: 180px; width: 100%; display: block;"></div>
+                <a target="_blank" href="{{ path.json_url }}" class="card-link">JSON</a>
+                <a target="_blank" href="{{ path.csv_url }}" class="card-link">CSV</a>
+              </div>
+              </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.js"></script>
+
+    <script>
+      {% for path in paths %}
+        c3.generate({
+          bindto: '#chart-{{ path.slug }}',
+          data: {
+            url: '{{ path.json_url }}',
+            mimeType: 'json',
+            x: 'date',
+            xFormat: '%Y-%m-%dT%H:%M:%S.%L',
+            keys: {
+              x: 'date',
+              value: ['value']
+            },
+            names: {
+              value: '{{ path.label }}'
+            }
+          },
+          legend: {
+            show: false
+          },
+          axis: {
+            x: {
+              show: false,
+              type: 'timeseries',
+              tick: {
+                format: '%Y-%m-%dT%H:%M'
+              }
+            }
+          }
+        });
+      {% endfor %}
+    </script>
+  </body>
+</html>
