@@ -95,14 +95,17 @@ class StatusPRSpider(scrapy.Spider):
                 label = card.css('p.text-muted::text').extract_first()
 
             if not label:
-                label = card.css('.card-header > h2::text').extract_first()
-
-            if not value:
-                value = card.css('.card-header > h3::text').extract_first()
+                label = card.css('.card-header h2::text').extract_first()
 
             if not path:
                 path = card.css(
-                    '.card-header > h2::attr(data-i18n)').extract_first()
+                    '.card-header h2::attr(data-i18n)').extract_first()
+
+            if not label:
+                label = card.css('.card-header h3.grey::text').extract_first()
+
+            if not value:
+                value = card.css('.card-header h3.success::text').extract_first()
 
             last_updated_text = card.css(
                 '.p-small-spacing > .text-muted::text').extract()
@@ -116,20 +119,37 @@ class StatusPRSpider(scrapy.Spider):
             else:
                 last_updated = None
 
+            if not path and label:
+                path = label.lower()
+
+            if not path or not value or not label:
+                list_items = card.css('.list-inline li')
+
+                for list_item in list_items:
+                    list_item_label = list_item.css('span.info::text').extract_first()
+                    list_item_path = list_item.css('span.info::attr(data-i18n)').extract_first()
+                    list_item_value = list_item.css('h1::text').extract_first()
+
+                    if not list_item_path and list_item_label:
+                        list_item_path = list_item_label.lower()
+
+                    if label and list_item_label:
+                        label = normalize_label(label)
+                        list_item_label = '{} - {}'.format(label, list_item_label)
+
+                    yield {
+                        'label': normalize_label(list_item_label),
+                        'path': normalize_path(list_item_path),
+                        'value': normalize_value(list_item_value),
+                        'last_updated_at': normalize_last_updated(last_updated)
+                    }
+
             if value:
-                if not path:
-                    path = label.lower()
-
-                label = normalize_label(label)
-                path = normalize_path(path)
-                value = normalize_value(value)
-                last_updated = normalize_last_updated(last_updated)
-
                 yield {
-                    'label': label,
-                    'path': path,
-                    'value': value,
-                    'last_updated_at': last_updated
+                    'label': normalize_label(label),
+                    'path': normalize_path(path),
+                    'value': normalize_value(value),
+                    'last_updated_at': normalize_last_updated(last_updated)
                 }
 
 
