@@ -22,19 +22,25 @@ def index():
     paths = []
     results = db.stats.aggregate([
         {
+            '$sort': {
+                'created_at': -1
+            }
+        },
+        {
             '$group': {
-                '_id': {'path': '$path', 'label': '$label'}
+                '_id': '$path',
+                'label': {'$last': '$label'}
             }
         }
     ])
 
     for result in results:
-        path = result['_id']['path']
+        path = result['_id']
 
         paths.append({
             '_id': path,
             'slug': path.replace('.', '-'),
-            'label': result['_id']['label'],
+            'label': result['label'],
             'json_url': '/stats/{}.json'.format(path),
             'csv_url': '/stats/{}.csv'.format(path)
         })
