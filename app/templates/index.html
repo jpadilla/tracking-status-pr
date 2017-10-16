@@ -28,9 +28,11 @@
       {% for path in paths %}
         <div class="row">
           <div class="col">
-            <div class="card text-center my-2">
+            <div id="{{ path.slug }}" class="card text-center my-2">
               <div class="card-block">
-                <h4 class="card-title">{{ path.label }}</h4>
+                <h4 class="card-title">
+                  <a href="#{{ path.slug }}">{{ path.label }}</a>
+                </h4>
                 <div id="chart-{{ path.slug }}" style="height: 180px; width: 100%; display: block;"></div>
                 <a target="_blank" href="{{ path.json_url }}" class="card-link">JSON</a>
                 <a target="_blank" href="{{ path.csv_url }}" class="card-link">CSV</a>
