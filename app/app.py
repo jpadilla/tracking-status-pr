@@ -45,6 +45,8 @@ def index():
             'csv_url': '/stats/{}.csv'.format(path)
         })
 
+    paths = sorted(paths, key=lambda k: k['label'])
+
     if request_wants_json():
         data = {}
 
