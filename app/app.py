@@ -2,7 +2,7 @@ import os
 import csv
 
 import pymongo
-from flask import Flask, Response, jsonify, render_template
+from flask import Flask, Response, jsonify, render_template, send_from_directory
 
 from .utils import JSONEncoder, Echo, request_wants_json
 
@@ -15,6 +15,12 @@ db = client.get_default_database()
 
 def get_stats(path):
     return db.stats.find({'path': path}).sort('created_at')
+
+
+@app.route('/favicon.ico')
+def favicon():
+    directory = os.path.join(app.root_path, 'static')
+    return send_from_directory(directory, 'favicon.ico')
 
 
 @app.route('/')
