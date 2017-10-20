@@ -1,5 +1,6 @@
 import os
 import csv
+import time
 
 import pymongo
 from flask import (
@@ -12,6 +13,10 @@ from .utils import JSONEncoder, Echo
 
 app = Flask(__name__)
 app.json_encoder = JSONEncoder
+app.config['version'] = os.getenv(
+    'SOURCE_VERSION', int(round(time.time() * 1000))
+)
+
 client = pymongo.MongoClient(os.getenv('MONGODB_URI'))
 db = client.get_default_database()
 
