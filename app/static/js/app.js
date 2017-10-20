@@ -3,7 +3,7 @@ function formatValue(value) {
 }
 
 function generateChart(path) {
-  var stats = path.data;
+  var stats = path.graph_data;
   var lastStat = stats[stats.length - 1];
   var formattedValue = formatValue(lastStat.value);
 
@@ -43,7 +43,7 @@ function generateChart(path) {
         show: false,
         type: 'timeseries',
         tick: {
-          format: '%Y-%m-%d %I:%M%p UTC'
+          format: '%Y-%m-%d %I%p UTC'
         }
       }
     }

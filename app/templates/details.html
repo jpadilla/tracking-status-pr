@@ -24,56 +24,43 @@
           </div>
         </div>
       </div>
-      {% for stat in stats %}
-        <div class="row">
-          <div class="col">
-            <div id="{{ stat.slug }}" class="card text-center my-2">
-              <h4 class="card-header">
-                <a href="{{ url_for('stats_details', stat=stat.slug) }}">{{ stat.label }}</a>
-              </h4>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <div id="chart-{{ stat.slug }}" class="chart"></div>
-                  </div>
-                  <div class="col-sm-12 col-md-5 align-self-center">
-                    <h1 class="display-3 last-value"></h1>
-                  </div>
+      <div class="row">
+        <div class="col">
+          <div id="{{ stat.slug }}" class="card text-center my-2">
+            <h4 class="card-header">{{ stat.label }}</h4>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div id="chart-{{ stat.slug }}" class="chart"></div>
                 </div>
-                <a target="_blank" href="{{ stat.json_url }}" class="card-link">JSON</a>
-                <a target="_blank" href="{{ stat.csv_url }}" class="card-link">CSV</a>
-                <a target="_blank" href="{{ stat.csv_url }}" class="card-link" data-toggle="modal" data-target="#modal-{{ stat.slug }}">Embed</a>
-                <div class="modal fade" id="modal-{{ stat.slug }}" tabindex="-1">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Embed</h5>
-                        <button type="button" class="close" data-dismiss="modal">
-                          <span>&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="container-fluid">
-                          <div class="row">
-                            <div class="col">
-                                <p>You can add this embed to your website by copying and pasting the HTML code below.</p>
-                                <form>
-                                  <div class="form-group">
-                                      <input type="text" class="form-control" value='&lt;script src="{{ url_for('embed_js', _external=True) }}" data-stat="{{ stat.slug }}"&gt;&lt;/script&gt;' onClick="this.setSelectionRange(0, this.value.length)">
-                                  </div>
-                                </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div class="col-sm-12 col-md-5 align-self-center">
+                  <h1 class="display-3 last-value"></h1>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      {% endfor %}
+      </div>
+      <div class="row">
+        <div class="col">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for stat in stat.data %}
+              <tr>
+                <td>{{ stat.date.strftime('%Y-%m-%d %I%p') }}</td>
+                <td>{{ stat.value }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
       <div class="row">
         <div class="col">
           <footer class="my-2 text-center">
@@ -93,12 +80,11 @@
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
     <script>
-      var stats = {{ stats|tojson }};
-      for (var stat of stats) {
-        generateChart(stat);
-      }
+      var path = {{ stat|tojson }};
+      generateChart(path);
     </script>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37217294-7"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -107,5 +93,6 @@
 
       gtag('config', 'UA-37217294-7');
     </script>
+
   </body>
 </html>
