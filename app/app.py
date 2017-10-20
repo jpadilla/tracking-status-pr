@@ -117,7 +117,7 @@ STATS_EXTRA = {
        'label':  'Containers',
        'percent': False
     },
-   'comercios.procesando.pan': {
+   'bread': {
        'label':  'Businesses Processing PAN',
        'percent': False
     },
