@@ -3,7 +3,8 @@ import csv
 
 import pymongo
 from flask import (
-    Flask, Response, jsonify, render_template, send_from_directory
+    Flask, Response, request, redirect, jsonify,
+    render_template, send_from_directory
 )
 
 from .utils import JSONEncoder, Echo
@@ -13,6 +14,13 @@ app = Flask(__name__)
 app.json_encoder = JSONEncoder
 client = pymongo.MongoClient(os.getenv('MONGODB_URI'))
 db = client.get_default_database()
+
+
+@app.before_request
+def before_request():
+    if not app.debug and not request.is_secure:
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url)
 
 
 STATS_EXTRA = {
