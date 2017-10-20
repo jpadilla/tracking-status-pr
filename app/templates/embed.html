@@ -27,7 +27,14 @@
               </div>
             </div>
             <div class="card-footer text-muted">
-                Data source: <a target="_blank" href="http://status.pr">status.pr</a>
+              <div class="row">
+                <div class="col">
+                  <div class="text-left"><a target="_blank" href="https://statuspr.jpadilla.com">Tracking status.pr</a></div>
+                </div>
+                <div class="col">
+                  <div class="text-right">Source: <a target="_blank" href="http://status.pr">status.pr</a></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -46,5 +53,16 @@
       var path = {{ stat|tojson }};
       generateChart(path);
     </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37217294-7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-37217294-7');
+    </script>
+
   </body>
 </html>
