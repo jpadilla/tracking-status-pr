@@ -1,6 +1,6 @@
 import datetime
 
-from flask import json, request
+from flask import json
 
 
 class JSONEncoder(json.JSONEncoder):
@@ -23,11 +23,3 @@ class Echo(object):
         in a buffer.
         """
         return value
-
-
-def request_wants_json():
-    best = request.accept_mimetypes \
-        .best_match(['application/json', 'text/html'])
-    return best == 'application/json' and \
-        request.accept_mimetypes[best] > \
-        request.accept_mimetypes['text/html']
