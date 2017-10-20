@@ -1,0 +1,20 @@
+.card-header a {
+  color: #212529;
+}
+
+.last-value {
+  color: #212529;
+}
+
+.chart {
+  height: 180px;
+  width: 100%;
+  display: block;
+}
+
+.header-link {
+  display: block;
+}
+.header-link:hover {
+  text-decoration: none;
+}

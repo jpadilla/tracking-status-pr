@@ -135,47 +135,22 @@ def get_stats(path):
     return db.stats.find({'path': path}).sort('created_at')
 
 
-@app.route('/favicon.ico')
-def favicon():
-    directory = os.path.join(app.root_path, 'static')
-    return send_from_directory(directory, 'favicon.ico')
-
-
-@app.route('/')
-def index():
+def process_stats(results):
     paths = []
-    results = db.stats.aggregate([
-        {
-            '$sort': {
-                'created_at': -1
-            }
-        },
-        {
-            '$group': {
-                '_id': '$path',
-                'label': {'$last': '$label'},
-                'data': {
-                    '$push': {
-                        'value': '$value',
-                        'date': '$created_at'
-                    }
-                }
-            }
-        }
-    ])
 
     for result in results:
         path = result['_id']
         label = result['label']
-        first_stat = result['data'][0]
-        last_stat = result['data'][-1]
+        data = sorted(result['data'], key=lambda k: k['date'])
+        first_stat = data[0]
+        last_stat = data[-1]
         stats = []
         prev_value = None
 
         if STATS_EXTRA.get(path):
             label = STATS_EXTRA[path]['label']
 
-        for stat in result['data'][1:-1]:
+        for stat in data[1:-1]:
             if stat['value'] != prev_value:
                 stats.append(stat)
 
@@ -205,9 +180,70 @@ def index():
             'csv_url': '/stats/{}.csv'.format(path)
         })
 
-    paths = sorted(paths, key=lambda k: k['label'])
+    return paths
 
-    return render_template('index.html', paths=paths)
+@app.route('/favicon.ico')
+def favicon():
+    directory = os.path.join(app.root_path, 'static')
+    return send_from_directory(directory, 'favicon.ico')
+
+
+@app.route('/embed.js')
+def embed_js():
+    directory = os.path.join(app.root_path, 'static', 'js')
+    return send_from_directory(directory, 'embed.js')
+
+
+@app.route('/')
+def index():
+    results = db.stats.aggregate([
+        {
+            '$sort': {
+                'created_at': -1
+            }
+        },
+        {
+            '$group': {
+                '_id': '$path',
+                'label': {'$last': '$label'},
+                'data': {
+                    '$push': {
+                        'value': '$value',
+                        'date': '$created_at'
+                    }
+                }
+            }
+        }
+    ])
+
+    stats = sorted(process_stats(results), key=lambda k: k['label'])
+    return render_template('index.html', stats=stats)
+
+
+@app.route('/embed/<path>')
+def embed(path):
+    results = db.stats.aggregate([
+        {
+            '$match': {
+                'path': path
+            }
+        },
+        {
+            '$group': {
+                '_id': '$path',
+                'label': {'$last': '$label'},
+                'data': {
+                    '$push': {
+                        'value': '$value',
+                        'date': '$created_at'
+                    }
+                }
+            }
+        }
+    ])
+
+    stat = process_stats(results)[0]
+    return render_template('embed.html', stat=stat)
 
 
 @app.route('/stats/<path>.json')
