@@ -167,19 +167,33 @@ def index():
     for result in results:
         path = result['_id']
         label = result['label']
-        stats = [result['data'][0]]
-        prev = None
+        first_stat = result['data'][0]
+        last_stat = result['data'][-1]
+        stats = []
+        prev_value = None
 
         if STATS_EXTRA.get(path):
             label = STATS_EXTRA[path]['label']
 
         for stat in result['data'][1:-1]:
-            if stat['value'] != prev:
+            if stat['value'] != prev_value:
                 stats.append(stat)
 
-            prev = stat['value']
+            prev_value = stat['value']
 
-        stats.append(result['data'][-1])
+        if first_stat['value'] != stats[0]['value']:
+            stats.insert(0, first_stat)
+        else:
+            stats[0] = first_stat
+
+        if last_stat['value'] != stats[-1]['value']:
+            stats.append(last_stat)
+        else:
+            stats[-1] = last_stat
+
+        # This prevents graphs with just one point
+        if len(stats) == 1:
+            stats = [first_stat, last_stat]
 
         paths.append({
             '_id': path,
