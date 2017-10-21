@@ -21,10 +21,10 @@
                   <a href="{{ url_for('stat_details', stat=stat.slug) }}">{{ stat.label }}</a>
                 </div>
                 <div class="ml-auto">
-                  <a target="_blank" class="share-link" href="https://www.facebook.com/sharer/sharer.php?u={{ url_for('index', _external=True) }}">
+                  <a target="_blank" class="share-link" href="https://www.facebook.com/sharer/sharer.php?u={{ url_for('stat_details', stat=stat.slug, _external=True) }}">
                     {% include "static/facebook.svg" %}
                   </a>
-                  <a target="_blank" class="share-link" href="https://twitter.com/intent/tweet?text={{ url_for('index', _external=True) }}">
+                  <a target="_blank" class="share-link" href="https://twitter.com/intent/tweet?text={{ url_for('stat_details', stat=stat.slug, _external=True) }}">
                     {% include "static/twitter.svg" %}
                   </a>
                 </div>
