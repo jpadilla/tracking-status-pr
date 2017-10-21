@@ -245,7 +245,7 @@ def stat_image(stat):
     stat = stats[0]
     width = 1200
     height = 630
-    image = Image.new('RGB', (width, height), color='#fff')
+    image = Image.open('./app/static/share-template.png', 'r')
     draw = ImageDraw.Draw(image)
 
     font = ImageFont.truetype('./fonts/SourceCodePro-Bold.otf', 100)
@@ -257,10 +257,6 @@ def stat_image(stat):
     text_width, text_height = draw.textsize(stat['last_value'], font=font)
     position = ((width - text_width) / 2, (height - text_height) / 2)
     draw.text(position, stat['last_value'], font=font, align='center', fill='#000')
-
-    logo = Image.open('./app/static/flag-coding.png', 'r')
-    position = ((image.width - logo.width - 50), (image.height - logo.height - 50))
-    image.paste(logo, position, logo)
 
     byte_io = BytesIO()
     image.save(byte_io, 'PNG')
