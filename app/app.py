@@ -18,9 +18,8 @@ app = Flask(__name__)
 app.json_encoder = JSONEncoder
 app.config['SERVER_NAME'] = os.getenv('SERVER_NAME')
 app.config['PREFERRED_URL_SCHEME'] = 'http' if app.debug else 'https'
-app.config['version'] = os.getenv(
-    'SOURCE_VERSION', int(round(time.time() * 1000))
-)
+app.config['now'] = int(round(time.time() * 1000))
+app.config['version'] = os.getenv('SOURCE_VERSION', app.config['now'])
 
 client = pymongo.MongoClient(os.getenv('MONGODB_URI'))
 db = client.get_default_database()
