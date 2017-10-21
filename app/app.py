@@ -14,6 +14,8 @@ from .utils import JSONEncoder, Echo
 
 app = Flask(__name__)
 app.json_encoder = JSONEncoder
+app.config['SERVER_NAME'] = os.getenv('SERVER_NAME', 'localhost')
+app.config['PREFERRED_URL_SCHEME'] = 'http' if app.debug else 'https'
 app.config['version'] = os.getenv(
     'SOURCE_VERSION', int(round(time.time() * 1000))
 )
@@ -154,7 +156,7 @@ def embed(path):
 
 
 @app.route('/stats/<stat>')
-def stats_details(stat):
+def stat_details(stat):
     results = db.stats.aggregate([
         {
             '$match': {

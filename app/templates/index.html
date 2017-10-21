@@ -33,7 +33,7 @@
           <div class="col">
             <div id="{{ stat.slug }}" class="card text-center my-2">
               <h4 class="card-header">
-                <a href="{{ url_for('stats_details', stat=stat.slug) }}">{{ stat.label }}</a>
+                <a href="{{ url_for('stat_details', stat=stat.slug) }}">{{ stat.label }}</a>
               </h4>
               <div class="card-body">
                 <div class="row">
@@ -47,8 +47,8 @@
                 <a target="_blank" href="{{ url_for('stats_json', stat=stat.slug) }}" class="card-link">JSON</a>
                 <a target="_blank" href="{{ url_for('stats_csv', stat=stat.slug) }}" class="card-link">CSV</a>
                 <a target="_blank" href="#" class="card-link" data-toggle="modal" data-target="#modal-{{ stat.slug }}">Embed</a>
-                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ url_for('stats_details', stat=stat.slug, _external=True) }}">FB</a>
-                <a target="_blank" href="https://twitter.com/intent/tweet?text={{ url_for('stats_details', stat=stat.slug, _external=True) }}">Twitter</a>
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ url_for('stat_details', stat=stat.slug, _external=True) }}">FB</a>
+                <a target="_blank" href="https://twitter.com/intent/tweet?text={{ url_for('stat_details', stat=stat.slug, _external=True) }}">Twitter</a>
                 <div class="modal fade" id="modal-{{ stat.slug }}" tabindex="-1">
                   <div class="modal-dialog">
                     <div class="modal-content">
