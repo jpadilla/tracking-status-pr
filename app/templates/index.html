@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Tracking status.pr</title>
 
+    <meta property="og:title" content="Tracking status.pr">
+    <meta property="og:description" content="This tool scrapes status.pr every hour and keeps tracks of changing metrics in order to help visualize and measure progress.">
+    <meta property="og:image" content="{{ url_for('static', filename='share.png', _external=True) }}">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css', t=config.version) }}">
@@ -37,12 +41,14 @@
                     <div id="chart-{{ stat.slug }}" class="chart"></div>
                   </div>
                   <div class="col-sm-12 col-md-5 align-self-center">
-                    <h1 class="display-3 last-value"></h1>
+                    <h1 class="display-3 last-value">{{ stat.last_value }}</h1>
                   </div>
                 </div>
-                <a target="_blank" href="{{ stat.json_url }}" class="card-link">JSON</a>
-                <a target="_blank" href="{{ stat.csv_url }}" class="card-link">CSV</a>
-                <a target="_blank" href="{{ stat.csv_url }}" class="card-link" data-toggle="modal" data-target="#modal-{{ stat.slug }}">Embed</a>
+                <a target="_blank" href="{{ url_for('stats_json', stat=stat.slug) }}" class="card-link">JSON</a>
+                <a target="_blank" href="{{ url_for('stats_csv', stat=stat.slug) }}" class="card-link">CSV</a>
+                <a target="_blank" href="#" class="card-link" data-toggle="modal" data-target="#modal-{{ stat.slug }}">Embed</a>
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ url_for('stats_details', stat=stat.slug, _external=True) }}">FB</a>
+                <a target="_blank" href="https://twitter.com/intent/tweet?text={{ url_for('stats_details', stat=stat.slug, _external=True) }}">Twitter</a>
                 <div class="modal fade" id="modal-{{ stat.slug }}" tabindex="-1">
                   <div class="modal-dialog">
                     <div class="modal-content">

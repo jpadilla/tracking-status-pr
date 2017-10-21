@@ -3,22 +3,10 @@ function formatValue(value) {
 }
 
 function generateChart(path) {
-  var stats = path.graph_data;
-  var lastStat = stats[stats.length - 1];
-  var formattedValue = formatValue(lastStat.value);
-
-  if (path.percent) {
-    formattedValue += '%';
-  }
-
-  $('#' + path.slug)
-    .find('.last-value')
-    .text(formattedValue);
-
   c3.generate({
     bindto: '#chart-' + path.slug,
     data: {
-      json: stats,
+      json: path.graph_data,
       x: 'date',
       xFormat: '%Y-%m-%dT%H:%M:%S.%L',
       keys: {

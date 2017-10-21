@@ -68,15 +68,19 @@ def process_stats(results):
         if len(stats) == 1:
             stats = [first_stat, last_stat]
 
+        last_stat = stats[-1]
+        formatted_value = "{:,}".format(last_stat['value'])
+
+        if STATS[path]['percent']:
+            formatted_value = '{}%'.format(formatted_value)
+
         paths.append({
             '_id': path,
             'slug': path.replace('.', '-'),
             'label': label,
             'data': data,
             'graph_data': stats,
-            'percent': STATS[path]['percent'],
-            'json_url': '/stats/{}.json'.format(path),
-            'csv_url': '/stats/{}.csv'.format(path)
+            'last_value': formatted_value
         })
 
     return paths
@@ -179,11 +183,11 @@ def stats_details(stat):
     return render_template('details.html', stat=stats[0])
 
 
-@app.route('/stats/<path>.json')
-def stats_json(path):
+@app.route('/stats/<stat>.json')
+def stats_json(stat):
     data = []
 
-    for stat in get_stats(path):
+    for stat in get_stats(stat):
         data.append({
             'date': stat['created_at'],
             'value': stat['value']
@@ -192,16 +196,16 @@ def stats_json(path):
     return jsonify(data)
 
 
-@app.route('/stats/<path>.csv')
-def stats_csv(path):
+@app.route('/stats/<stat>.csv')
+def stats_csv(stat):
     writer = csv.DictWriter(Echo(), fieldnames=['date', 'value'])
     writer.writeheader()
 
-    def generate():
-        for stat in get_stats(path):
+    def generate(stat):
+        for stat in get_stats(stat):
             yield writer.writerow({
                 'date': stat['created_at'],
                 'value': stat['value']
             })
 
-    return Response(generate(), mimetype='text/csv')
+    return Response(generate(stat), mimetype='text/csv')

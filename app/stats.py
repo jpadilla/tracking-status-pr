@@ -93,7 +93,7 @@ STATS = {
     },
    'bank': {
        'label':  'Bank Branches',
-       'percent': False
+       'percent': True
     },
    'barrel.gas': {
        'label':  'Gasoline Barrels Supplied',
