@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col">
+    <div class="card text-center my-2">
+      <div class="card-body">
+        <h1 class="card-title">Tracking status.pr</h1>
+        <p class="card-text">This tool scrapes <a target="_blank" href="http://status.pr/">status.pr</a> every hour and keeps tracks of changing metrics in order to help visualize and measure progress. Data is also made available in CSV and JSON formats.</p>
+        <a class="header-link" target="_blank" href="https://github.com/jpadilla/tracking-status-pr"><img src="{{ url_for('static', filename='github-logo.png', t=config.version) }}" width="16" height="16" style="margin:-3px -3px 0 0"> Source code on GitHub</a>
+        <a class="header-link" target="_blank" href="https://github.com/SoPR/maria-tech-brigade-effort"><img src="{{ url_for('static', filename='favicon.ico', t=config.version) }}" width="16" height="16" style="margin:-3px -3px 0 0"> Maria Tech Brigade</a>
+        {% if share %}
+        <div class="mt-3">
+          <a target="_blank" class="share-link" href="https://www.facebook.com/sharer/sharer.php?u={{ url_for('index', _external=True) }}">
+            {% include "static/facebook.svg" %}
+          </a>
+
+          <a target="_blank" class="share-link" href="https://twitter.com/intent/tweet?text={{ url_for('index', _external=True) }}">
+            {% include "static/twitter.svg" %}
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

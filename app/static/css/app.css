@@ -18,3 +18,15 @@
 .header-link:hover {
   text-decoration: none;
 }
+
+.share-link:hover {
+  text-decoration: none;
+}
+
+.share-link svg:hover #twitter-icon {
+  fill: #1DA1F2;
+}
+
+.share-link svg:hover #facebook-icon {
+  fill: #3C5B9B;
+}

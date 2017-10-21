@@ -16,22 +16,28 @@
   <body>
 
     <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="card text-center my-2">
-            <div class="card-body">
-              <h1 class="card-title">Tracking status.pr</h1>
-              <p class="card-text">This tool scrapes <a target="_blank" href="http://status.pr/">status.pr</a> every hour and keeps tracks of changing metrics in order to help visualize and measure progress. Data is also made available in CSV and JSON formats.</p>
-              <a class="header-link" target="_blank" href="https://github.com/jpadilla/tracking-status-pr"><img src="{{ url_for('static', filename='github-logo.png') }}" width="16" height="16" style="margin:-3px -3px 0 0"> Source code on GitHub</a>
-              <a class="header-link" target="_blank" href="https://github.com/SoPR/maria-tech-brigade-effort"><img src="{{ url_for('static', filename='favicon.ico') }}" width="16" height="16" style="margin:-3px -3px 0 0"> Maria Tech Brigade</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% with share=False %}
+        {% include "common/intro.html" %}
+      {% endwith %}
+
       <div class="row">
         <div class="col">
           <div id="{{ stat.slug }}" class="card text-center my-2">
-            <h4 class="card-header">{{ stat.label }}</h4>
+            <h4 class="card-header">
+              <div class="d-flex justify-content-between">
+                <div class="ml-auto">
+                  <a href="{{ url_for('stat_details', stat=stat.slug) }}">{{ stat.label }}</a>
+                </div>
+                <div class="ml-auto">
+                  <a target="_blank" class="share-link" href="https://www.facebook.com/sharer/sharer.php?u={{ url_for('stat_details', stat=stat.slug, _external=True) }}">
+                    {% include "static/facebook.svg" %}
+                  </a>
+                  <a target="_blank" class="share-link" href="https://twitter.com/intent/tweet?text={{ url_for('stat_details', stat=stat.slug, _external=True) }}">
+                    {% include "static/twitter.svg" %}
+                  </a>
+                </div>
+              </div>
+            </h4>
             <div class="card-body">
               <div class="row">
                 <div class="col">
@@ -65,14 +71,8 @@
           </table>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <footer class="my-2 text-center">
-            <p><small class="text-muted">This website is open-source and not affiliated to the Government of Puerto Rico or status.pr.</small></p>
-            <p><small class="text-muted">Built by <a href="http://jpadilla.com">José Padilla</a></small></p>
-          </footer>
-        </div>
-      </div>
+
+      {% include "common/footer.html" %}
     </div>
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
@@ -88,15 +88,7 @@
       generateChart(path);
     </script>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37217294-7"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-37217294-7');
-    </script>
+    {% include "common/analytics.html" %}
 
   </body>
 </html>
