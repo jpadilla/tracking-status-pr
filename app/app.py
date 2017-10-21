@@ -1,11 +1,13 @@
 import os
 import csv
 import time
+from io import BytesIO
 
 import pymongo
+from PIL import Image, ImageDraw, ImageFont
 from flask import (
     Flask, Response, request, redirect, jsonify,
-    render_template, send_from_directory
+    render_template, send_file, send_from_directory
 )
 
 from .stats import STATS
@@ -14,7 +16,7 @@ from .utils import JSONEncoder, Echo
 
 app = Flask(__name__)
 app.json_encoder = JSONEncoder
-app.config['SERVER_NAME'] = os.getenv('SERVER_NAME', 'localhost')
+app.config['SERVER_NAME'] = os.getenv('SERVER_NAME')
 app.config['PREFERRED_URL_SCHEME'] = 'http' if app.debug else 'https'
 app.config['version'] = os.getenv(
     'SOURCE_VERSION', int(round(time.time() * 1000))
@@ -211,3 +213,57 @@ def stats_csv(stat):
             })
 
     return Response(generate(stat), mimetype='text/csv')
+
+
+@app.route('/stats/<stat>.png')
+def stat_image(stat):
+    results = db.stats.aggregate([
+        {
+            '$match': {
+                'path': stat
+            }
+        },
+        {
+            '$group': {
+                '_id': '$path',
+                'label': {'$last': '$label'},
+                'data': {
+                    '$push': {
+                        'value': '$value',
+                        'date': '$created_at'
+                    }
+                }
+            }
+        }
+    ])
+
+    stats = process_stats(results)
+
+    if not stats:
+        return redirect('/')
+
+    stat = stats[0]
+    width = 1200
+    height = 630
+    image = Image.new('RGB', (width, height), color='#fff')
+    draw = ImageDraw.Draw(image)
+
+    font = ImageFont.truetype('./fonts/SourceCodePro-Bold.otf', 100)
+    text_width, text_height = draw.textsize(stat['label'], font=font)
+    position = ((width - text_width) / 2, (height - text_height - 400) / 2)
+    draw.text(position, stat['label'], font=font, align='center', fill='#000')
+
+    font = ImageFont.truetype('./fonts/SourceCodePro-Regular.otf', 80)
+    text_width, text_height = draw.textsize(stat['last_value'], font=font)
+    position = ((width - text_width) / 2, (height - text_height) / 2)
+    draw.text(position, stat['last_value'], font=font, align='center', fill='#000')
+
+    logo = Image.open('./app/static/flag-coding.png', 'r')
+    position = ((image.width - logo.width - 50), (image.height - logo.height - 50))
+    image.paste(logo, position, logo)
+
+    byte_io = BytesIO()
+    image.save(byte_io, 'PNG')
+    byte_io.seek(0)
+
+    return send_file(byte_io, mimetype='image/png')
