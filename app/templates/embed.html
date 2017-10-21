@@ -15,7 +15,9 @@
       <div class="row">
         <div class="col">
           <div id="{{ stat.slug }}" class="card text-center my-2">
-            <h4 class="card-header">{{ stat.label }}</h4>
+            <h4 class="card-header">
+              <a href="{{ url_for('stats_details', stat=stat.slug) }}">{{ stat.label }}</a>
+            </h4>
             <div class="card-body">
               <div class="row">
                 <div class="col">
