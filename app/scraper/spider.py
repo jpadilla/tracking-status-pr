@@ -1,6 +1,6 @@
 import scrapy
 
-from .utils import strip_accents, is_float, is_int
+from .utils import strip_accents, is_float, is_int, is_blank
 
 
 def normalize_value(value):
@@ -84,6 +84,14 @@ def parse(response):
         path = card.css(
             'p.text-muted > span::attr(data-i18n)').extract_first()
 
+        if is_blank(path):
+            path = card.css(
+                'p.text-muted::attr(data-i18n)').extract_first()
+
+        if is_blank(path):
+            path = card.css(
+                '.card-header h2::attr(data-i18n)').extract_first()
+
         if path in CUSTOM_PARSERS:
             yield CUSTOM_PARSERS[path](response)
             continue
@@ -91,20 +99,19 @@ def parse(response):
         value = card.css(
             '.font-large-2.text-bold-300.info::text').extract_first()
 
-        if not path:
+        if is_blank(path):
             label = card.css('p.text-muted::text').extract_first()
 
-        if not label:
+        if is_blank(label):
+            label = card.css('p.text-muted::text').extract_first()
+
+        if is_blank(label):
             label = card.css('.card-header h2::text').extract_first()
 
-        if not path:
-            path = card.css(
-                '.card-header h2::attr(data-i18n)').extract_first()
-
-        if not label:
+        if is_blank(label):
             label = card.css('.card-header h3.grey::text').extract_first()
 
-        if not value:
+        if is_blank(value):
             value = card.css('.card-header h3.success::text').extract_first()
 
         last_updated_text = card.css(

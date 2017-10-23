@@ -25,3 +25,18 @@ def is_int(x):
         return False
     else:
         return a == b
+
+
+def is_blank(s):
+    blank = False
+
+    if not s:
+        blank = True
+
+    try:
+        if s.isspace():
+            blank = True
+    except AttributeError:
+        pass
+
+    return blank
