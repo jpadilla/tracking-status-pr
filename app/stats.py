@@ -8,7 +8,7 @@ STATS = {
        'percent': True
    },
    'aee': {
-       'label':  'AEE',
+       'label':  'AEE Generation',
        'percent': True
     },
    'telecomunication': {
@@ -52,7 +52,7 @@ STATS = {
        'percent': False
     },
    'flight': {
-       'label':  'Comercial Flights',
+       'label':  'Commercial Flights',
        'percent': True
     },
    'casinos': {
