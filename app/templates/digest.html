@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tracking status.pr</title>
+
+    <meta property="og:title" content="Tracking status.pr">
+    <meta property="og:description" content="This tool scrapes status.pr every hour and keeps tracks of changing metrics in order to help visualize and measure progress.">
+    <meta property="og:image" content="{{ url_for('static', filename='share.png', _external=True) }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image:src" content="{{ url_for('static', filename='share.png', _external=True) }}">
+    <meta name="twitter:creator" content="@jpadilla_">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css', t=config.version) }}">
+  </head>
+  <body>
+
+    <div class="container">
+      {% with share=False %}
+        {% include "common/intro.html" %}
+      {% endwith %}
+
+      <div class="row my-2">
+        <div class="col">
+          <h2>Changes: {{ date_range.0.strftime('%b %d') }} - {{ date_range.1.strftime('%b %d') }}</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Stat</th>
+                <th scope="col">Change</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for result in results %}
+              <tr>
+                <td>
+                  <a href="{{ url_for('stat_details', stat=result._id) }}">{{ result.label }}</a>
+                </td>
+                <td>
+                  {% if result.change > 0 %}
+                    {% set text_color = "text-success" %}
+                  {% elif result.change < 0 %}
+                    {% set text_color = "text-danger" %}
+                  {% else %}
+                    {% set text_color = "text-secondary" %}
+                  {% endif%}
+
+                  <span class="{{ text_color }}">{{ result.display_change }}</span>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {% include "common/footer.html" %}
+    </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js', t=config.version) }}"></script>
+
+    {% include "common/analytics.html" %}
+
+  </body>
+</html>

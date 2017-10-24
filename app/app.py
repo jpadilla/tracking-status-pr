@@ -1,9 +1,11 @@
 import os
 import csv
 import time
+import datetime
 from io import BytesIO
 
 import pymongo
+from pytz import timezone
 from PIL import Image, ImageDraw, ImageFont
 from flask import (
     Flask, Response, request, redirect, jsonify,
@@ -262,3 +264,78 @@ def stat_image(stat):
     byte_io.seek(0)
 
     return send_file(byte_io, mimetype='image/png')
+
+
+@app.route('/digest/<date>')
+def digest(date):
+    pr = timezone('America/Puerto_Rico')
+    created_at = datetime.datetime.strptime(date, '%Y-%m-%d').astimezone(pr)
+    created_at = created_at - datetime.timedelta(days=1)
+    start_date = created_at + datetime.timedelta(hours=23, minutes=59)
+    end_date = created_at + datetime.timedelta(days=1, hours=23, minutes=59)
+    date_range = [start_date, end_date]
+
+    results = db.stats.aggregate([
+        {
+            '$sort': {
+                'created_at': 1
+            }
+        },
+        {
+            '$match': {
+                'created_at': {
+                    '$gte': start_date,
+                    '$lte': end_date
+                }
+            }
+        },
+        {
+            '$group': {
+                '_id': '$path',
+                'first': {'$first': '$$ROOT'},
+                'last': {'$last': '$$ROOT'}
+            }
+        },
+        {
+            '$project': {
+                '_id': '$_id',
+                'first': '$first',
+                'last': '$last',
+                'change': {'$subtract': ['$last.value', '$first.value']}
+            }
+        },
+        {
+            '$sort': {
+                '_id': 1
+            }
+        }
+    ])
+
+    data = []
+
+    for result in results:
+        path = result['_id']
+
+        if STATS.get(path):
+            label = STATS[path]['label']
+
+        if result['change'] > 0:
+            sign = '+'
+        else:
+            sign = ''
+
+        change = '{sign}{change:0.2f}'.format(
+            sign=sign,
+            change=result['change']
+        )
+
+        data.append({
+            '_id': path,
+            'label': label,
+            'first': result['first'],
+            'last': result['last'],
+            'change': result['change'],
+            'display_change': change
+        })
+
+    return render_template('digest.html', date_range=date_range, results=data)
