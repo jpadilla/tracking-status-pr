@@ -324,9 +324,15 @@ def digest(date):
         else:
             sign = ''
 
-        change = '{sign}{change:0.2f}'.format(
+        if STATS[path]['percent']:
+            percent = '%'
+        else:
+            percent = ''
+
+        change = '{sign}{change:0.2f}{percent}'.format(
             sign=sign,
-            change=result['change']
+            change=result['change'],
+            percent=percent
         )
 
         data.append({
