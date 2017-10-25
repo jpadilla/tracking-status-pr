@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tracking status.pr</title>
+    <title>Changes: {{ date_range.0.strftime('%b %d') }} - {{ date_range.1.strftime('%b %d') }} | Tracking status.pr</title>
 
-    <meta property="og:title" content="Tracking status.pr">
+    <meta property="og:title" content="Changes: {{ date_range.0.strftime('%b %d') }} - {{ date_range.1.strftime('%b %d') }} | Tracking status.pr">
     <meta property="og:description" content="This tool scrapes status.pr every hour and keeps tracks of changing metrics in order to help visualize and measure progress.">
     <meta property="og:image" content="{{ url_for('static', filename='share.png', _external=True) }}">
     <meta name="twitter:card" content="summary">
