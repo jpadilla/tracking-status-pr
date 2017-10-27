@@ -267,12 +267,19 @@ def stat_image(stat):
 
 
 @app.route('/digest/<date>')
-def digest(date):
+@app.route('/digest/<date>/<end_date>')
+def digest(date, end_date=None):
     pr = timezone('America/Puerto_Rico')
     created_at = datetime.datetime.strptime(date, '%Y-%m-%d').astimezone(pr)
     created_at = created_at - datetime.timedelta(days=1)
     start_date = created_at + datetime.timedelta(hours=23, minutes=59)
-    end_date = created_at + datetime.timedelta(days=1, hours=23, minutes=59)
+
+    if not end_date:
+        end_date = created_at + datetime.timedelta(days=1, hours=23, minutes=59)
+    else:
+        end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d').astimezone(pr)
+        end_date = end_date + datetime.timedelta(days=1, microseconds=-1)
+
     date_range = [start_date, end_date]
 
     results = db.stats.aggregate([
