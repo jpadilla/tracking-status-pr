@@ -7,14 +7,11 @@ from io import BytesIO
 import pymongo
 from pytz import timezone
 from PIL import Image, ImageDraw, ImageFont
-from flask import (
-    Flask, Response, request, redirect, jsonify,
-    render_template, send_file, send_from_directory
-)
+from flask import (Flask, Response, request, redirect, jsonify,
+                   render_template, send_file, send_from_directory)
 
 from .stats import STATS
 from .utils import JSONEncoder, Echo
-
 
 pr = timezone('America/Puerto_Rico')
 utc = timezone('UTC')
@@ -38,25 +35,17 @@ def before_request():
 
 
 def get_stats(path=None):
-    pipeline = [
-        {
-            '$sort': {
-                'created_at': -1
-            }
-        }
-    ]
+    pipeline = [{'$sort': {'created_at': -1}}]
 
     if path:
-        pipeline.append({
-            '$match': {
-                'path': path
-            }
-        })
+        pipeline.append({'$match': {'path': path}})
 
     pipeline.append({
         '$group': {
             '_id': '$path',
-            'label': {'$last': '$label'},
+            'label': {
+                '$last': '$label'
+            },
             'data': {
                 '$push': {
                     'value': '$value',
@@ -173,10 +162,7 @@ def stats_json(stat):
     stats = db.stats.find({'path': stat}).sort('created_at')
 
     for stat in stats:
-        data.append({
-            'date': stat['created_at'],
-            'value': stat['value']
-        })
+        data.append({'date': stat['created_at'], 'value': stat['value']})
 
     return jsonify(data)
 
@@ -220,7 +206,8 @@ def stat_image(stat):
     font = ImageFont.truetype('./fonts/SourceCodePro-Regular.otf', 80)
     text_width, text_height = draw.textsize(stat['last_value'], font=font)
     position = ((width - text_width) / 2, (height - text_height) / 2)
-    draw.text(position, stat['last_value'], font=font, align='center', fill='#000')
+    draw.text(
+        position, stat['last_value'], font=font, align='center', fill='#000')
 
     byte_io = BytesIO()
     image.save(byte_io, 'PNG')
@@ -237,48 +224,50 @@ def digest(date, end_date=None):
     start_date = created_at + datetime.timedelta(hours=23, minutes=59)
 
     if not end_date:
-        end_date = created_at + datetime.timedelta(days=1, hours=23, minutes=59)
+        end_date = created_at + datetime.timedelta(
+            days=1, hours=23, minutes=59)
     else:
-        end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d').astimezone(pr)
+        end_date = datetime.datetime.strptime(end_date,
+                                              '%Y-%m-%d').astimezone(pr)
         end_date = end_date + datetime.timedelta(days=1, microseconds=-1)
 
     date_range = [start_date, end_date]
 
-    results = db.stats.aggregate([
-        {
-            '$sort': {
-                'created_at': 1
-            }
-        },
-        {
-            '$match': {
-                'created_at': {
-                    '$gte': start_date,
-                    '$lte': end_date
-                }
-            }
-        },
-        {
-            '$group': {
-                '_id': '$path',
-                'first': {'$first': '$$ROOT'},
-                'last': {'$last': '$$ROOT'}
-            }
-        },
-        {
-            '$project': {
-                '_id': '$_id',
-                'first': '$first',
-                'last': '$last',
-                'change': {'$subtract': ['$last.value', '$first.value']}
-            }
-        },
-        {
-            '$sort': {
-                '_id': 1
+    results = db.stats.aggregate([{
+        '$sort': {
+            'created_at': 1
+        }
+    }, {
+        '$match': {
+            'created_at': {
+                '$gte': start_date,
+                '$lte': end_date
             }
         }
-    ])
+    }, {
+        '$group': {
+            '_id': '$path',
+            'first': {
+                '$first': '$$ROOT'
+            },
+            'last': {
+                '$last': '$$ROOT'
+            }
+        }
+    }, {
+        '$project': {
+            '_id': '$_id',
+            'first': '$first',
+            'last': '$last',
+            'change': {
+                '$subtract': ['$last.value', '$first.value']
+            }
+        }
+    }, {
+        '$sort': {
+            '_id': 1
+        }
+    }])
 
     data = []
 
@@ -299,10 +288,7 @@ def digest(date, end_date=None):
             percent = ''
 
         change = '{sign}{change:0.2f}{percent}'.format(
-            sign=sign,
-            change=result['change'],
-            percent=percent
-        )
+            sign=sign, change=result['change'], percent=percent)
 
         data.append({
             '_id': path,
