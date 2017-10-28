@@ -31,7 +31,7 @@ function generateChart(path) {
         show: false,
         type: 'timeseries',
         tick: {
-          format: '%Y-%m-%d %I%p UTC'
+          format: '%Y-%m-%d %I%p'
         }
       }
     }

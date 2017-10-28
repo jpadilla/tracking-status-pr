@@ -16,6 +16,9 @@ from .stats import STATS
 from .utils import JSONEncoder, Echo
 
 
+pr = timezone('America/Puerto_Rico')
+utc = timezone('UTC')
+
 app = Flask(__name__)
 app.json_encoder = JSONEncoder
 app.config['SERVER_NAME'] = os.getenv('SERVER_NAME')
@@ -34,8 +37,36 @@ def before_request():
         return redirect(url)
 
 
-def get_stats(path):
-    return db.stats.find({'path': path}).sort('created_at')
+def get_stats(path=None):
+    pipeline = [
+        {
+            '$sort': {
+                'created_at': -1
+            }
+        }
+    ]
+
+    if path:
+        pipeline.append({
+            '$match': {
+                'path': path
+            }
+        })
+
+    pipeline.append({
+        '$group': {
+            '_id': '$path',
+            'label': {'$last': '$label'},
+            'data': {
+                '$push': {
+                    'value': '$value',
+                    'date': '$created_at'
+                }
+            }
+        }
+    })
+
+    return db.stats.aggregate(pipeline)
 
 
 def process_stats(results):
@@ -79,6 +110,10 @@ def process_stats(results):
         if STATS[path]['percent']:
             formatted_value = '{}%'.format(formatted_value)
 
+        # Convert stat date from UTC to PR timezone
+        for stat in stats:
+            stat['date'] = stat['date'].replace(tzinfo=utc).astimezone(pr)
+
         paths.append({
             '_id': path,
             'slug': path.replace('.', '-'),
@@ -89,6 +124,7 @@ def process_stats(results):
         })
 
     return paths
+
 
 @app.route('/favicon.ico')
 def favicon():
@@ -104,52 +140,14 @@ def embed_js():
 
 @app.route('/')
 def index():
-    results = db.stats.aggregate([
-        {
-            '$sort': {
-                'created_at': -1
-            }
-        },
-        {
-            '$group': {
-                '_id': '$path',
-                'label': {'$last': '$label'},
-                'data': {
-                    '$push': {
-                        'value': '$value',
-                        'date': '$created_at'
-                    }
-                }
-            }
-        }
-    ])
-
+    results = get_stats()
     stats = sorted(process_stats(results), key=lambda k: k['label'])
     return render_template('index.html', stats=stats)
 
 
 @app.route('/embed/<path>')
 def embed(path):
-    results = db.stats.aggregate([
-        {
-            '$match': {
-                'path': path
-            }
-        },
-        {
-            '$group': {
-                '_id': '$path',
-                'label': {'$last': '$label'},
-                'data': {
-                    '$push': {
-                        'value': '$value',
-                        'date': '$created_at'
-                    }
-                }
-            }
-        }
-    ])
-
+    results = get_stats(path)
     stats = process_stats(results)
 
     if not stats:
@@ -160,26 +158,7 @@ def embed(path):
 
 @app.route('/stats/<stat>')
 def stat_details(stat):
-    results = db.stats.aggregate([
-        {
-            '$match': {
-                'path': stat
-            }
-        },
-        {
-            '$group': {
-                '_id': '$path',
-                'label': {'$last': '$label'},
-                'data': {
-                    '$push': {
-                        'value': '$value',
-                        'date': '$created_at'
-                    }
-                }
-            }
-        }
-    ])
-
+    results = get_stats(stat)
     stats = process_stats(results)
 
     if not stats:
@@ -191,8 +170,9 @@ def stat_details(stat):
 @app.route('/stats/<stat>.json')
 def stats_json(stat):
     data = []
+    stats = db.stats.find({'path': stat}).sort('created_at')
 
-    for stat in get_stats(stat):
+    for stat in stats:
         data.append({
             'date': stat['created_at'],
             'value': stat['value']
@@ -207,7 +187,9 @@ def stats_csv(stat):
     writer.writeheader()
 
     def generate(stat):
-        for stat in get_stats(stat):
+        stats = db.stats.find({'path': stat}).sort('created_at')
+
+        for stat in stats:
             yield writer.writerow({
                 'date': stat['created_at'],
                 'value': stat['value']
@@ -218,26 +200,7 @@ def stats_csv(stat):
 
 @app.route('/stats/<stat>.png')
 def stat_image(stat):
-    results = db.stats.aggregate([
-        {
-            '$match': {
-                'path': stat
-            }
-        },
-        {
-            '$group': {
-                '_id': '$path',
-                'label': {'$last': '$label'},
-                'data': {
-                    '$push': {
-                        'value': '$value',
-                        'date': '$created_at'
-                    }
-                }
-            }
-        }
-    ])
-
+    results = get_stats(stat)
     stats = process_stats(results)
 
     if not stats:
@@ -269,7 +232,6 @@ def stat_image(stat):
 @app.route('/digest/<date>')
 @app.route('/digest/<date>/<end_date>')
 def digest(date, end_date=None):
-    pr = timezone('America/Puerto_Rico')
     created_at = datetime.datetime.strptime(date, '%Y-%m-%d').astimezone(pr)
     created_at = created_at - datetime.timedelta(days=1)
     start_date = created_at + datetime.timedelta(hours=23, minutes=59)
