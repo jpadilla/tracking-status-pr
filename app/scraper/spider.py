@@ -162,7 +162,7 @@ def parse(response):
 
 class StatusPRSpider(scrapy.Spider):
     name = 'status-pr'
-    start_urls = ['http://status.pr/']
+    start_urls = ['http://estatus.pr/']
 
     def parse(self, response):
         return parse(response)
