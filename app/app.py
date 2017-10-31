@@ -64,6 +64,11 @@ def process_stats(results):
     for result in results:
         path = result['_id']
         label = result['label']
+
+        # Convert stat date from UTC to PR timezone
+        for stat in result['data']:
+            stat['date'] = stat['date'].replace(tzinfo=utc).astimezone(pr)
+
         data = sorted(result['data'], key=lambda k: k['date'], reverse=True)
         first_stat = data[-1]
         last_stat = data[0]
@@ -98,10 +103,6 @@ def process_stats(results):
 
         if STATS[path]['percent']:
             formatted_value = '{}%'.format(formatted_value)
-
-        # Convert stat date from UTC to PR timezone
-        for stat in stats:
-            stat['date'] = stat['date'].replace(tzinfo=utc).astimezone(pr)
 
         paths.append({
             '_id': path,
