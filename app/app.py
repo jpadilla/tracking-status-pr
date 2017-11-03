@@ -84,12 +84,14 @@ def process_stats(results):
 
             prev_value = stat['value']
 
-        if first_stat['value'] != stats[-1]['value']:
+        stats = sorted(stats, key=lambda k: k['date'])
+
+        if first_stat['value'] != stats[0]['value']:
             stats.insert(0, first_stat)
         else:
             stats[0] = first_stat
 
-        if last_stat['value'] != stats[0]['value']:
+        if last_stat['value'] != stats[-1]['value']:
             stats.append(last_stat)
         else:
             stats[-1] = last_stat
