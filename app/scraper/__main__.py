@@ -2,7 +2,7 @@ import os
 
 from scrapy.crawler import CrawlerProcess
 
-from .spider import StatusPRSpider
+from .spider import StatusPRJSONSpider
 
 
 if __name__ == '__main__':
@@ -15,5 +15,5 @@ if __name__ == '__main__':
         },
         'MONGODB_URI': os.getenv('MONGODB_URI')
     })
-    process.crawl(StatusPRSpider)
+    process.crawl(StatusPRJSONSpider)
     process.start()

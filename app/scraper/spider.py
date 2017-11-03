@@ -1,3 +1,5 @@
+import json
+
 import scrapy
 
 from .utils import strip_accents, is_float, is_int, is_blank
@@ -166,3 +168,55 @@ class StatusPRSpider(scrapy.Spider):
 
     def parse(self, response):
         return parse(response)
+
+
+class StatusPRJSONSpider(scrapy.Spider):
+    name = 'status-pr-json'
+    start_urls = ['http://estatus.pr/card-data/card-data.json']
+
+    def parse(self, response):
+        stats = json.loads(response.body_as_unicode())
+        data = []
+
+        for stat in stats:
+            label = stat['Description']
+            path = stat['Language']
+            card = stat['Card'][0]
+            value = card['Value']
+            in_percentage = card['ValueIsInPercentage']
+            children = stat['CardDefinitionChild']
+
+            if len(children) > 0 and value == 0:
+                for child in children:
+                    label = child['Description']
+                    path = child['Language']
+                    card = child['CardDetail'][0]
+                    value = card['Value']
+                    in_percentage = card['ValueIsInPercentage']
+
+                    if not path and label:
+                        path = label.lower()
+
+                    if not in_percentage:
+                        value = int(value)
+
+                    data.append({
+                        'label': normalize_label(label),
+                        'path': normalize_path(path),
+                        'value': value
+                    })
+            else:
+                if not path and label:
+                    path = label.lower()
+
+                if not in_percentage:
+                    value = int(value)
+
+                data.append({
+                    'label': normalize_label(label),
+                    'path': normalize_path(path),
+                    'value': value
+                })
+
+        return data
+
