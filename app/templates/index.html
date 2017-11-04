@@ -28,7 +28,7 @@
           <div class="col">
             <div id="{{ stat.slug }}" class="card text-center my-2">
               <h4 class="card-header">
-                <a href="{{ url_for('stat_details', stat=stat.slug) }}">{{ stat.label }}</a>
+                <a href="{{ url_for('stat_details', stat=stat._id) }}">{{ stat.label }}</a>
               </h4>
               <div class="card-body">
                 <div class="row">
@@ -39,8 +39,8 @@
                     <h1 class="display-3 last-value">{{ stat.last_value }}</h1>
                   </div>
                 </div>
-                <a target="_blank" href="{{ url_for('stats_json', stat=stat.slug) }}" class="card-link">JSON</a>
-                <a target="_blank" href="{{ url_for('stats_csv', stat=stat.slug) }}" class="card-link">CSV</a>
+                <a target="_blank" href="{{ url_for('stats_json', stat=stat._id) }}" class="card-link">JSON</a>
+                <a target="_blank" href="{{ url_for('stats_csv', stat=stat._id) }}" class="card-link">CSV</a>
                 <a target="_blank" href="#" class="card-link" data-toggle="modal" data-target="#modal-{{ stat.slug }}">Embed</a>
 
                 <div class="modal fade" id="modal-{{ stat.slug }}" tabindex="-1">
