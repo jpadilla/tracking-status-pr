@@ -1,114 +1,130 @@
 STATS = {
-   'gas': {
-       'label': 'Gas Stations',
-       'percent': True
-   },
-   'supermarket': {
-       'label': 'Supermarket',
-       'percent': True
-   },
-   'aee': {
-       'label':  'AEE Generation',
-       'percent': True
+    'gas': {
+        'label': 'Gas Stations',
+        'percent': True
     },
-   'telecomunication': {
-       'label':  'Telecomm. Services',
-       'percent': True
+    'supermarket': {
+        'label': 'Supermarket',
+        'percent': True
     },
-   'aaa': {
-       'label':  'AAA',
-       'percent': True
+    'aee': {
+        'label': 'AEE Generation',
+        'percent': True
     },
-   'antenna': {
-       'label':  'Cell Phone Antennas',
-       'percent': True
+    'telecomunication': {
+        'label': 'Telecomm. Services',
+        'percent': True
     },
-   'port': {
-       'label':  'Open Ports',
-       'percent': True
+    'aaa': {
+        'label': 'AAA',
+        'percent': True
     },
-   'goverment.mail': {
-       'label':  'Postal Offices',
-       'percent': True
+    'antenna': {
+        'label': 'Cell Phone Antennas',
+        'percent': True
     },
-   'ama': {
-       'label':  'AMA Routes',
-       'percent': True
+    'port': {
+        'label': 'Open Ports',
+        'percent': True
     },
-   'tourism.hotels': {
-       'label':  'Tourism / Hotels',
-       'percent': True
+    'goverment.mail': {
+        'label': 'Postal Offices',
+        'percent': True
     },
-   'complaint': {
-       'label':  'Complaints',
-       'percent': False
+    'ama': {
+        'label': 'AMA Routes',
+        'percent': True
     },
-   'pet': {
-       'label':  'Displaced Pets',
-       'percent': False
+    'tourism.hotels': {
+        'label': 'Tourism / Hotels',
+        'percent': True
     },
-   'barrel.diesel': {
-       'label':  'Diesel Barrels Supplied',
-       'percent': False
+    'complaint': {
+        'label': 'Complaints',
+        'percent': False
     },
-   'flight': {
-       'label':  'Commercial Flights',
-       'percent': True
+    'complaint.products': {
+        'label': 'Complaints / Products',
+        'percent': True
     },
-   'casinos': {
-       'label':  'Tourism / Casinos',
-       'percent': True
+    'complaint.fuel': {
+        'label': 'Complaints / Fuel',
+        'percent': True
     },
-   'cooperatives': {
-       'label':  'Cooperatives',
-       'percent': False
+    'complaint.ivu': {
+        'label': 'Complaints / IVU',
+        'percent': True
     },
-   'refugee': {
-       'label':  'Shelterees',
-       'percent': False
+    'complaint.other': {
+        'label': 'Complaints / Others',
+        'percent': True
     },
-   'shelter': {
-       'label':  'Shelters',
-       'percent': False
+    'pet': {
+        'label': 'Displaced Pets',
+        'percent': False
     },
-   'milk-industry': {
-       'label':  'Milk Industry',
-       'percent': True
+    'barrel.diesel': {
+        'label': 'Diesel Barrels Supplied',
+        'percent': False
     },
-   'atms': {
-       'label':  'ATMs',
-       'percent': False
+    'flight': {
+        'label': 'Commercial Flights',
+        'percent': True
     },
-   'pharmacy': {
-       'label':  'Online Processing Pharmacies',
-       'percent': False
+    'tourism.casinos': {
+        'label': 'Tourism / Casinos',
+        'percent': True
     },
-   'container': {
-       'label':  'Containers',
-       'percent': False
+    'cooperatives': {
+        'label': 'Cooperatives',
+        'percent': False
     },
-   'bread': {
-       'label':  'Businesses Processing PAN',
-       'percent': False
+    'refugee': {
+        'label': 'Shelterees',
+        'percent': False
     },
-   'bank': {
-       'label':  'Bank Branches',
-       'percent': True
+    'shelter': {
+        'label': 'Shelters',
+        'percent': False
     },
-   'barrel.gas': {
-       'label':  'Gasoline Barrels Supplied',
-       'percent': False
+    'milk-industry': {
+        'label': 'Milk Industry',
+        'percent': True
     },
-   'dialysis': {
-       'label':  'Assisted Dialysis Centers',
-       'percent': False
+    'atms': {
+        'label': 'ATMs',
+        'percent': False
     },
-   'hospital': {
-       'label':  'Assisted Hospitals',
-       'percent': False
+    'pharmacy': {
+        'label': 'Online Processing Pharmacies',
+        'percent': False
     },
-   'tower': {
-       'label':  'Cell Towers',
-       'percent': True
+    'container': {
+        'label': 'Containers',
+        'percent': False
+    },
+    'bread': {
+        'label': 'Businesses Processing PAN',
+        'percent': False
+    },
+    'bank': {
+        'label': 'Bank Branches',
+        'percent': True
+    },
+    'barrel.gas': {
+        'label': 'Gasoline Barrels Supplied',
+        'percent': False
+    },
+    'dialysis': {
+        'label': 'Assisted Dialysis Centers',
+        'percent': False
+    },
+    'hospital': {
+        'label': 'Assisted Hospitals',
+        'percent': False
+    },
+    'tower': {
+        'label': 'Cell Towers',
+        'percent': True
     }
 }

@@ -186,32 +186,32 @@ class StatusPRJSONSpider(scrapy.Spider):
             in_percentage = card['ValueIsInPercentage']
             children = stat['CardDefinitionChild']
 
+            if not path and label:
+                path = label.lower()
+
+            if not in_percentage:
+                value = int(value)
+
             if len(children) > 0 and value == 0:
                 for child in children:
-                    label = child['Description']
-                    path = child['Language']
-                    card = child['CardDetail'][0]
-                    value = card['Value']
-                    in_percentage = card['ValueIsInPercentage']
+                    child_label = child['Description']
+                    child_path = child['Language']
+                    child_card = child['CardDetail'][0]
+                    child_value = child_card['Value']
+                    child_in_percentage = child_card['ValueIsInPercentage']
 
-                    if not path and label:
-                        path = label.lower()
+                    if not child_path and child_label:
+                        child_path = '{}.{}'.format(path, child_label.lower())
 
-                    if not in_percentage:
-                        value = int(value)
+                    if not child_in_percentage:
+                        child_value = int(child_value)
 
                     data.append({
-                        'label': normalize_label(label),
-                        'path': normalize_path(path),
-                        'value': value
+                        'label': normalize_label(child_label),
+                        'path': normalize_path(child_path),
+                        'value': child_value
                     })
             else:
-                if not path and label:
-                    path = label.lower()
-
-                if not in_percentage:
-                    value = int(value)
-
                 data.append({
                     'label': normalize_label(label),
                     'path': normalize_path(path),

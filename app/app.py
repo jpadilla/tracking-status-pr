@@ -84,36 +84,52 @@ def process_stats(results):
 
             prev_value = stat['value']
 
-        stats = sorted(stats, key=lambda k: k['date'])
+        if not stats:
+            stats = [last_stat]
+            formatted_value = "{:,}".format(last_stat['value'])
 
-        if first_stat['value'] != stats[0]['value']:
-            stats.insert(0, first_stat)
+            if STATS[path]['percent']:
+                formatted_value = '{}%'.format(formatted_value)
+
+            paths.append({
+                '_id': path,
+                'slug': path.replace('.', '-'),
+                'label': label,
+                'data': data,
+                'graph_data': stats,
+                'last_value': formatted_value
+            })
         else:
-            stats[0] = first_stat
+            stats = sorted(stats, key=lambda k: k['date'])
 
-        if last_stat['value'] != stats[-1]['value']:
-            stats.append(last_stat)
-        else:
-            stats[-1] = last_stat
+            if first_stat['value'] != stats[0]['value']:
+                stats.insert(0, first_stat)
+            else:
+                stats[0] = first_stat
 
-        # This prevents graphs with just one point
-        if len(stats) == 1:
-            stats = [first_stat, last_stat]
+            if last_stat['value'] != stats[-1]['value']:
+                stats.append(last_stat)
+            else:
+                stats[-1] = last_stat
 
-        last_stat = stats[-1]
-        formatted_value = "{:,}".format(last_stat['value'])
+            # This prevents graphs with just one point
+            if len(stats) == 1:
+                stats = [first_stat, last_stat]
 
-        if STATS[path]['percent']:
-            formatted_value = '{}%'.format(formatted_value)
+            last_stat = stats[-1]
+            formatted_value = "{:,}".format(last_stat['value'])
 
-        paths.append({
-            '_id': path,
-            'slug': path.replace('.', '-'),
-            'label': label,
-            'data': data,
-            'graph_data': stats,
-            'last_value': formatted_value
-        })
+            if STATS[path]['percent']:
+                formatted_value = '{}%'.format(formatted_value)
+
+            paths.append({
+                '_id': path,
+                'slug': path.replace('.', '-'),
+                'label': label,
+                'data': data,
+                'graph_data': stats,
+                'last_value': formatted_value
+            })
 
     return paths
 
