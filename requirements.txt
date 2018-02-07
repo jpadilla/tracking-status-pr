@@ -1,8 +1,0 @@
-Flask==0.12.2
-gunicorn==19.7.1
-Pillow==4.3.0
-pymongo==3.5.1
-pylibmc==1.5.2
-pytz==2017.2
-requests==2.18.4
-Scrapy==1.4.0
