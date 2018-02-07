@@ -11,7 +11,7 @@ from flask import (Flask, Response, request, redirect, jsonify,
                    render_template, send_file, send_from_directory)
 
 from .stats import STATS
-from .utils import JSONEncoder, Echo
+from .utils import JSONEncoder, Echo, cached
 
 pr = timezone('America/Puerto_Rico')
 utc = timezone('UTC')
@@ -147,6 +147,7 @@ def embed_js():
 
 
 @app.route('/')
+@cached()
 def index():
     results = get_stats()
     stats = sorted(process_stats(results), key=lambda k: k['label'])
