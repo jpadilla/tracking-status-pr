@@ -9,11 +9,11 @@ name = "pypi"
 [dev-packages]
 
 [packages]
-Flask = "==0.12.2"
-gunicorn = "==19.7.1"
-Pillow = "==4.3.0"
-pymongo = "==3.5.1"
-pytz = "==2017.2"
-requests = "==2.18.4"
-Scrapy = "==1.4.0"
+Flask = "==1.0.2"
+gunicorn = "==19.9.0"
+Pillow = "==5.2.0"
+pymongo = "==3.7.1"
+pytz = "==2018.5"
+requests = "==2.19.1"
+Scrapy = "==1.5.1"
 pylibmc = "==1.5.2"
