@@ -1,5 +1,4 @@
 import os
-import csv
 import time
 import datetime
 from io import BytesIO
@@ -11,7 +10,7 @@ from flask import (Flask, Response, request, redirect, jsonify,
                    render_template, send_file, send_from_directory)
 
 from .stats import STATS
-from .utils import JSONEncoder, Echo, cached
+from .utils import JSONEncoder, cached
 
 pr = timezone('America/Puerto_Rico')
 utc = timezone('UTC')
@@ -189,19 +188,16 @@ def stats_json(stat):
 
 @app.route('/stats/<stat>.csv')
 def stats_csv(stat):
-    writer = csv.DictWriter(Echo(), fieldnames=['date', 'value'])
-    writer.writeheader()
-
     def generate(stat):
         stats = db.stats.find({'path': stat}).sort('created_at')
+        yield f"Date,Value\n"
 
         for stat in stats:
-            yield writer.writerow({
-                'date': stat['created_at'],
-                'value': stat['value']
-            })
+            created_at = stat['created_at']
+            value = stat['value']
+            yield f"{created_at},{value}\n"
 
-    return Response(generate(stat), mimetype='text/csv')
+    return Response(generate(stat), mimetype='text/plain')
 
 
 @app.route('/stats/<stat>.png')
