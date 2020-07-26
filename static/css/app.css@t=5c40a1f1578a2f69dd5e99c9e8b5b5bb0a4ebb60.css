@@ -1,0 +1,37 @@
+.card-title a {
+  color: inherit;
+}
+
+.card-header a {
+  color: #212529;
+  text-decoration: underline;
+}
+
+.last-value {
+  color: #212529;
+}
+
+.chart {
+  height: 180px;
+  width: 100%;
+  display: block;
+}
+
+.header-link {
+  display: block;
+}
+.header-link:hover {
+  text-decoration: none;
+}
+
+.card-header .share-link {
+  text-decoration: none;
+}
+
+.share-link svg:hover #twitter-icon {
+  fill: #1DA1F2;
+}
+
+.share-link svg:hover #facebook-icon {
+  fill: #3C5B9B;
+}

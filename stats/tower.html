@@ -1,0 +1,3501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Cell Towers | Tracking status.pr</title>
+
+    <meta property="og:title" content="Cell Towers | Tracking status.pr">
+    <meta property="og:description" content="This tool scrapes status.pr every hour and keeps tracks of changing metrics in order to help visualize and measure progress.">
+    <meta property="og:image" content="https://statuspr.jpadilla.com/stats/tower.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:src" content="https://statuspr.jpadilla.com/stats/tower.png?t=1595711043474">
+    <meta name="twitter:creator" content="@jpadilla_">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.css">
+    <link rel="stylesheet" href="../static/css/app.css@t=5c40a1f1578a2f69dd5e99c9e8b5b5bb0a4ebb60.css">
+  </head>
+  <body>
+
+    <div class="container">
+      
+        <div class="row">
+  <div class="col">
+    <div class="card text-center my-2">
+      <div class="card-body">
+        <h1 class="card-title">
+          <a href="../index.html">Tracking status.pr</a>
+        </h1>
+        <p class="card-text">This tool scrapes <a target="_blank" href="http://status.pr/">status.pr</a> every hour and keeps tracks of changing metrics in order to help visualize and measure progress. Data is also made available in CSV and JSON formats.</p>
+        <a class="header-link" target="_blank" href="https://github.com/jpadilla/tracking-status-pr"><img src="../static/github-logo.png@t=5c40a1f1578a2f69dd5e99c9e8b5b5bb0a4ebb60" width="16" height="16" style="margin:-3px -3px 0 0"> Source code on GitHub</a>
+        <a class="header-link" target="_blank" href="https://github.com/SoPR/maria-tech-brigade-effort"><img src="../static/favicon.ico@t=5c40a1f1578a2f69dd5e99c9e8b5b5bb0a4ebb60" width="16" height="16" style="margin:-3px -3px 0 0"> Maria Tech Brigade</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+      
+
+      <div class="row">
+        <div class="col">
+          <div id="tower" class="card text-center my-2">
+            <h4 class="card-header">
+              <div class="d-flex justify-content-between">
+                <div class="ml-auto">
+                  <a href="tower.html">Cell Towers</a>
+                </div>
+                <div class="ml-auto">
+                  <a target="_blank" class="share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://statuspr.jpadilla.com/stats/tower">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path id="facebook-icon" d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/></svg>
+                  </a>
+                  <a target="_blank" class="share-link" href="https://twitter.com/intent/tweet?text=https://statuspr.jpadilla.com/stats/tower">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path id="twitter-icon" d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.04-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z"/></svg>
+                  </a>
+                </div>
+              </div>
+            </h4>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <div id="chart-tower" class="chart"></div>
+                </div>
+                <div class="col-sm-12 col-md-5 align-self-center">
+                  <h1 class="display-3 last-value">58.18%</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <td>2017-11-13 11AM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-13 10AM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-13 09AM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-13 08AM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-13 07AM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-13 06AM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-13 04AM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-13 03AM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-13 02AM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-13 01AM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-13 12AM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 11PM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 10PM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 09PM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 08PM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 07PM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 06PM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 03PM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 02PM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 01PM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 12PM</td>
+                <td>58.18</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 10AM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 09AM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 08AM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 07AM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 06AM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 05AM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 03AM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 02AM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 01AM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-12 12AM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 11PM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 10PM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 09PM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 08PM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 07PM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 06PM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 05PM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 04PM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 03PM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 01PM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 12PM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 11AM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 10AM</td>
+                <td>94.5</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 09AM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 08AM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 07AM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 06AM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 05AM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 04AM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 03AM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 02AM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 01AM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-11 12AM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 11PM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 10PM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 09PM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 08PM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 07PM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 05PM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 04PM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 03PM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 02PM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 11AM</td>
+                <td>91.04</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 10AM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 09AM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 08AM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 07AM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 06AM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 05AM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 04AM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 03AM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 02AM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 01AM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-10 12AM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 11PM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 09PM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 08PM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 06PM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 04PM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 03PM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 02PM</td>
+                <td>92.4</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 11AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 10AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 09AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 08AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 07AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 06AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 05AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 04AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 03AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 02AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 01AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-09 12AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 11PM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 10PM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 09PM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 08PM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 07PM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 06PM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 05PM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 04PM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 03PM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 02PM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 01PM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 11AM</td>
+                <td>87.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 09AM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 08AM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 07AM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 06AM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 05AM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 04AM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 03AM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 02AM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 01AM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-08 12AM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 11PM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 10PM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 09PM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 08PM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 07PM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 06PM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 04PM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 03PM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 02PM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 01PM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 12PM</td>
+                <td>87.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 11AM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 10AM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 09AM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 08AM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 07AM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 06AM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 05AM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 04AM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 03AM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 02AM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 01AM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-07 12AM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 11PM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 10PM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 09PM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 08PM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 07PM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 06PM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 05PM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 04PM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 03PM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 02PM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 01PM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 12PM</td>
+                <td>82.58</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 10AM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 08AM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 07AM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 06AM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 05AM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 04AM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 03AM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 02AM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 01AM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-06 12AM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 11PM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 10PM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 09PM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 08PM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 07PM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 06PM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 05PM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 04PM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 03PM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 02PM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 01PM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 12PM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 11AM</td>
+                <td>77.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 10AM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 09AM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 08AM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 07AM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 06AM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 05AM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 04AM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 03AM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 02AM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 01AM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-05 12AM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 11PM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 10PM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 09PM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 08PM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 07PM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 06PM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 05PM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 04PM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 03PM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 02PM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 01PM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 12PM</td>
+                <td>80.11</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 11AM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 10AM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 09AM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 08AM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 07AM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 06AM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 05AM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 04AM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 03AM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 02AM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 01AM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-04 12AM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 11PM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 09PM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 08PM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 07PM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 05PM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 03PM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 02PM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 01PM</td>
+                <td>76.16</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 12PM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 09AM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 08AM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 07AM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 06AM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 05AM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 04AM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 03AM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 02AM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 01AM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-03 12AM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 11PM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 10PM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 08PM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 06PM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 05PM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 04PM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 03PM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 02PM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 01PM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 12PM</td>
+                <td>71.96</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 11AM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 10AM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 09AM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 08AM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 07AM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 06AM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 05AM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 04AM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 03AM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 02AM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 01AM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-02 12AM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 11PM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 10PM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 09PM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 08PM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 07PM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 06PM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 05PM</td>
+                <td>71.89</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 04PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 03PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 02PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 01PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 12PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 11AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 10AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 09AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 08AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 07AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 06AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 05AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 04AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 03AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 02AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 01AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-11-01 12AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 11PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 10PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 09PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 08PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 07PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 06PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 05PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 04PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 03PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 02PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 01PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 12PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 11AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 10AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 01AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-31 12AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 11PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 10PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 09PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 08PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 07PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 06PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 05PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 04PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 03PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 02PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 01PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 12PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 11AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 10AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 09AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 08AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 07AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 06AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 05AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 04AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 03AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 02AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 01AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-30 12AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 11PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 10PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 09PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 08PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 07PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 06PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 05PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 04PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 03PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 02PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 01PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 12PM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 11AM</td>
+                <td>67.44</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-29 12AM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 11PM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 10PM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 09PM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 08PM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 07PM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 06PM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 05PM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 04PM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 03PM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 02PM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 01PM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 12PM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 11AM</td>
+                <td>66.76</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 10AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 09AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 08AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 07AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 06AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 05AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 04AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 03AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 02AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 01AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-28 12AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 11PM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 10PM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 09PM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 08PM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 07PM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 06PM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 05PM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 04PM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 03PM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 02PM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 01PM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 12PM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 11AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 10AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 09AM</td>
+                <td>62.94</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 08AM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 07AM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 06AM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 05AM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 04AM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 03AM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 02AM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 01AM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-27 12AM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 11PM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 10PM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 09PM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 08PM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 07PM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 06PM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 05PM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 04PM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 03PM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 02PM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 01PM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 12PM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 11AM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 10AM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 09AM</td>
+                <td>59.72</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 08AM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 07AM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 06AM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 05AM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 04AM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 03AM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 02AM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 01AM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-26 12AM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 11PM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 10PM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 09PM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 08PM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 07PM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 06PM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 05PM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 04PM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 03PM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 02PM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 01PM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 12PM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 11AM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 10AM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 09AM</td>
+                <td>57.81</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 08AM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 07AM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 06AM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 05AM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 04AM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 03AM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 02AM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 01AM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-25 12AM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 11PM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 10PM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 09PM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 08PM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 07PM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 06PM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 05PM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 04PM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 03PM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 02PM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 01PM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 12PM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 11AM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 10AM</td>
+                <td>56.26</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 09AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 08AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 07AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 06AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 05AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 04AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 03AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 02AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 01AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-24 12AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 11PM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 10PM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 09PM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 08PM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 07PM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 06PM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 05PM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 04PM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 03PM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 02PM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 01PM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 12PM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 11AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 10AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 09AM</td>
+                <td>53.05</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 08AM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 07AM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 06AM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 05AM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 04AM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 03AM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 02AM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 01AM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-23 12AM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 11PM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 10PM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 09PM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 08PM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 07PM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 06PM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 05PM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 04PM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 03PM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 02PM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 01PM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 12PM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 11AM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 10AM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 09AM</td>
+                <td>53.36</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 08AM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 07AM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 06AM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 05AM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 04AM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 03AM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 02AM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 01AM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-22 12AM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 11PM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 10PM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 09PM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 08PM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 07PM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 06PM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 05PM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 04PM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 03PM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 02PM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 01PM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 12PM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 11AM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 10AM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 09AM</td>
+                <td>51.82</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 08AM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 07AM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 06AM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 05AM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 04AM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 03AM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 02AM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 01AM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-21 12AM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 11PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 10PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 10PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 09PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 08PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 07PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 06PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 05PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 04PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 03PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 02PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 01PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 12PM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 11AM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 10AM</td>
+                <td>49.1</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 09AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 08AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 07AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 06AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 05AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 04AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 03AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 02AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 01AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-20 12AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 11PM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 10PM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 09PM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 08PM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 07PM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 06PM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 05PM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 04PM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 03PM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 02PM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 01PM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 12PM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 11AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 10AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 09AM</td>
+                <td>46.57</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 08AM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 07AM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 06AM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 05AM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 04AM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 03AM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 02AM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 01AM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-19 12AM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 11PM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 10PM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 09PM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 08PM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 07PM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 06PM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 05PM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 04PM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 03PM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 02PM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 01PM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 12PM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 11AM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 10AM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 09AM</td>
+                <td>45.95</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 08AM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 07AM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 06AM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 05AM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 04AM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 03AM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 02AM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 01AM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-18 12AM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 11PM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 10PM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 09PM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 08PM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 07PM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 06PM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 05PM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 04PM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 03PM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 02PM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 01PM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 12PM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 10AM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 09AM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 08AM</td>
+                <td>42.68</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 07AM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 06AM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 05AM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 04AM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 03AM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 02AM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 01AM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-17 12AM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-16 11PM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-16 10PM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-16 09PM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-16 08PM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-16 07PM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-16 06PM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-16 05PM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-16 03PM</td>
+                <td>43.29</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 04PM</td>
+                <td>37.12</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 03PM</td>
+                <td>37.12</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 02PM</td>
+                <td>37.12</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 01PM</td>
+                <td>37.12</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 12PM</td>
+                <td>37.12</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 11AM</td>
+                <td>37.12</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 09AM</td>
+                <td>37.12</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 08AM</td>
+                <td>37.12</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 07AM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 06AM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 05AM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 04AM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 03AM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 02AM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 01AM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-12 12AM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 11PM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 10PM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 09PM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 08PM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 07PM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 06PM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 04PM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 03PM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 02PM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 01PM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 12PM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 11AM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 10AM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 09AM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 08AM</td>
+                <td>33.6</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 07AM</td>
+                <td>32.79</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 06AM</td>
+                <td>32.79</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 05AM</td>
+                <td>32.79</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 04AM</td>
+                <td>32.79</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 03AM</td>
+                <td>32.79</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 02AM</td>
+                <td>32.79</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 01AM</td>
+                <td>32.79</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-11 12AM</td>
+                <td>32.79</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-10 11PM</td>
+                <td>32.79</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-10 10PM</td>
+                <td>32.79</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-10 09PM</td>
+                <td>32.79</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-06 08PM</td>
+                <td>24.09</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-05 08PM</td>
+                <td>24.09</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-04 08PM</td>
+                <td>26.13</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-03 08PM</td>
+                <td>22.54</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-02 08PM</td>
+                <td>22.54</td>
+              </tr>
+              
+              <tr>
+                <td>2017-10-01 08PM</td>
+                <td>14.21</td>
+              </tr>
+              
+              <tr>
+                <td>2017-09-30 08PM</td>
+                <td>11.3</td>
+              </tr>
+              
+              <tr>
+                <td>2017-09-29 08PM</td>
+                <td>10.7</td>
+              </tr>
+              
+              <tr>
+                <td>2017-09-28 08PM</td>
+                <td>96.0</td>
+              </tr>
+              
+              <tr>
+                <td>2017-09-27 08PM</td>
+                <td>28.0</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row">
+  <div class="col">
+    <footer class="my-2 text-center">
+      <p><small class="text-muted">This website is open-source and not affiliated with the Government of Puerto Rico or status.pr.</small></p>
+      <p><small class="text-muted">Built by <a href="http://jpadilla.com">José Padilla</a></small></p>
+    </footer>
+  </div>
+</div>
+    </div>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.18/c3.min.js"></script>
+    <script src="../static/js/app.js@t=5c40a1f1578a2f69dd5e99c9e8b5b5bb0a4ebb60"></script>
+
+    <script>
+      var path = {"_id": "tower", "data": [{"date": "2017-11-13T11:02:04.794", "value": 58.18}, {"date": "2017-11-13T10:01:27.123", "value": 58.18}, {"date": "2017-11-13T09:01:32.937", "value": 58.18}, {"date": "2017-11-13T08:02:13.535", "value": 58.18}, {"date": "2017-11-13T07:01:06.713", "value": 58.18}, {"date": "2017-11-13T06:01:28.830", "value": 58.18}, {"date": "2017-11-13T04:01:24.915", "value": 58.18}, {"date": "2017-11-13T03:01:13.749", "value": 58.18}, {"date": "2017-11-13T02:02:07.318", "value": 58.18}, {"date": "2017-11-13T01:00:55.168", "value": 58.18}, {"date": "2017-11-13T00:01:06.821", "value": 58.18}, {"date": "2017-11-12T23:01:39.088", "value": 58.18}, {"date": "2017-11-12T22:01:22.588", "value": 58.18}, {"date": "2017-11-12T21:01:27.724", "value": 58.18}, {"date": "2017-11-12T20:01:58.385", "value": 58.18}, {"date": "2017-11-12T19:00:33.901", "value": 58.18}, {"date": "2017-11-12T18:00:41.934", "value": 58.18}, {"date": "2017-11-12T15:00:36.263", "value": 58.18}, {"date": "2017-11-12T14:01:20.775", "value": 58.18}, {"date": "2017-11-12T13:00:34.878", "value": 58.18}, {"date": "2017-11-12T12:01:16.680", "value": 58.18}, {"date": "2017-11-12T10:01:16.955", "value": 94.5}, {"date": "2017-11-12T09:00:39.061", "value": 94.5}, {"date": "2017-11-12T08:01:07.994", "value": 94.5}, {"date": "2017-11-12T07:00:27.687", "value": 94.5}, {"date": "2017-11-12T06:01:09.716", "value": 94.5}, {"date": "2017-11-12T05:00:54.382", "value": 94.5}, {"date": "2017-11-12T03:01:14.272", "value": 94.5}, {"date": "2017-11-12T02:01:01.643", "value": 94.5}, {"date": "2017-11-12T01:01:06.517", "value": 94.5}, {"date": "2017-11-12T00:01:08.051", "value": 94.5}, {"date": "2017-11-11T23:01:04.921", "value": 94.5}, {"date": "2017-11-11T22:01:22.643", "value": 94.5}, {"date": "2017-11-11T21:01:12.658", "value": 94.5}, {"date": "2017-11-11T20:01:53.292", "value": 94.5}, {"date": "2017-11-11T19:00:39.082", "value": 94.5}, {"date": "2017-11-11T18:00:54.557", "value": 94.5}, {"date": "2017-11-11T17:00:21.872", "value": 94.5}, {"date": "2017-11-11T16:00:43.820", "value": 94.5}, {"date": "2017-11-11T15:00:42.269", "value": 94.5}, {"date": "2017-11-11T13:00:35.323", "value": 94.5}, {"date": "2017-11-11T12:01:07.975", "value": 94.5}, {"date": "2017-11-11T11:01:14.577", "value": 94.5}, {"date": "2017-11-11T10:01:03.735", "value": 94.5}, {"date": "2017-11-11T09:01:02.400", "value": 91.04}, {"date": "2017-11-11T08:01:23.571", "value": 91.04}, {"date": "2017-11-11T07:00:59.430", "value": 91.04}, {"date": "2017-11-11T06:01:14.707", "value": 91.04}, {"date": "2017-11-11T05:01:22.371", "value": 91.04}, {"date": "2017-11-11T04:01:30.655", "value": 91.04}, {"date": "2017-11-11T03:02:00.818", "value": 91.04}, {"date": "2017-11-11T02:01:21.544", "value": 91.04}, {"date": "2017-11-11T01:00:55.091", "value": 91.04}, {"date": "2017-11-11T00:01:17.578", "value": 91.04}, {"date": "2017-11-10T23:01:21.423", "value": 91.04}, {"date": "2017-11-10T22:01:23.118", "value": 91.04}, {"date": "2017-11-10T21:01:20.766", "value": 91.04}, {"date": "2017-11-10T20:01:23.454", "value": 91.04}, {"date": "2017-11-10T19:00:59.805", "value": 91.04}, {"date": "2017-11-10T17:01:16.851", "value": 91.04}, {"date": "2017-11-10T16:01:04.845", "value": 91.04}, {"date": "2017-11-10T15:01:16.140", "value": 91.04}, {"date": "2017-11-10T14:01:09.654", "value": 91.04}, {"date": "2017-11-10T11:01:21.063", "value": 91.04}, {"date": "2017-11-10T10:01:01.887", "value": 92.4}, {"date": "2017-11-10T09:00:51.757", "value": 92.4}, {"date": "2017-11-10T08:01:30.406", "value": 92.4}, {"date": "2017-11-10T07:01:20.932", "value": 92.4}, {"date": "2017-11-10T06:01:09.543", "value": 92.4}, {"date": "2017-11-10T05:01:03.904", "value": 92.4}, {"date": "2017-11-10T04:00:50.594", "value": 92.4}, {"date": "2017-11-10T03:01:15.547", "value": 92.4}, {"date": "2017-11-10T02:01:14.610", "value": 92.4}, {"date": "2017-11-10T01:01:20.070", "value": 92.4}, {"date": "2017-11-10T00:01:24.490", "value": 92.4}, {"date": "2017-11-09T23:01:13.221", "value": 92.4}, {"date": "2017-11-09T21:01:14.758", "value": 92.4}, {"date": "2017-11-09T20:01:43.779", "value": 92.4}, {"date": "2017-11-09T18:01:22.236", "value": 92.4}, {"date": "2017-11-09T16:00:29.743", "value": 92.4}, {"date": "2017-11-09T15:00:54.824", "value": 92.4}, {"date": "2017-11-09T14:00:48.188", "value": 92.4}, {"date": "2017-11-09T11:01:11.956", "value": 87.58}, {"date": "2017-11-09T10:00:53.285", "value": 87.58}, {"date": "2017-11-09T09:01:17.736", "value": 87.58}, {"date": "2017-11-09T08:00:59.079", "value": 87.58}, {"date": "2017-11-09T07:01:27.641", "value": 87.58}, {"date": "2017-11-09T06:01:16.744", "value": 87.58}, {"date": "2017-11-09T05:01:16.047", "value": 87.58}, {"date": "2017-11-09T04:01:31.755", "value": 87.58}, {"date": "2017-11-09T03:01:25.401", "value": 87.58}, {"date": "2017-11-09T02:01:22.200", "value": 87.58}, {"date": "2017-11-09T01:00:55.429", "value": 87.58}, {"date": "2017-11-09T00:01:21.836", "value": 87.58}, {"date": "2017-11-08T23:01:03.348", "value": 87.58}, {"date": "2017-11-08T22:01:10.540", "value": 87.58}, {"date": "2017-11-08T21:01:14.711", "value": 87.58}, {"date": "2017-11-08T20:01:43.233", "value": 87.58}, {"date": "2017-11-08T19:01:10.514", "value": 87.58}, {"date": "2017-11-08T18:00:57.691", "value": 87.58}, {"date": "2017-11-08T17:01:20.420", "value": 87.58}, {"date": "2017-11-08T16:01:01.117", "value": 87.58}, {"date": "2017-11-08T15:00:54.377", "value": 87.58}, {"date": "2017-11-08T14:01:05.806", "value": 87.58}, {"date": "2017-11-08T13:01:01.210", "value": 87.58}, {"date": "2017-11-08T11:01:03.702", "value": 87.58}, {"date": "2017-11-08T09:01:06.067", "value": 87.0}, {"date": "2017-11-08T08:01:09.303", "value": 87.0}, {"date": "2017-11-08T07:01:14.199", "value": 87.0}, {"date": "2017-11-08T06:01:10.691", "value": 87.0}, {"date": "2017-11-08T05:01:35.766", "value": 87.0}, {"date": "2017-11-08T04:01:23.502", "value": 87.0}, {"date": "2017-11-08T03:01:26.018", "value": 87.0}, {"date": "2017-11-08T02:01:52.403", "value": 87.0}, {"date": "2017-11-08T01:01:30.491", "value": 87.0}, {"date": "2017-11-08T00:01:16.371", "value": 87.0}, {"date": "2017-11-07T23:01:02.167", "value": 87.0}, {"date": "2017-11-07T22:00:58.292", "value": 87.0}, {"date": "2017-11-07T21:01:01.849", "value": 87.0}, {"date": "2017-11-07T20:01:33.968", "value": 87.0}, {"date": "2017-11-07T19:00:37.593", "value": 87.0}, {"date": "2017-11-07T18:01:01.972", "value": 87.0}, {"date": "2017-11-07T16:01:10.639", "value": 87.0}, {"date": "2017-11-07T15:00:57.131", "value": 87.0}, {"date": "2017-11-07T14:01:21.640", "value": 87.0}, {"date": "2017-11-07T13:00:31.697", "value": 87.0}, {"date": "2017-11-07T12:01:23.205", "value": 87.0}, {"date": "2017-11-07T11:01:26.991", "value": 82.58}, {"date": "2017-11-07T10:01:23.515", "value": 82.58}, {"date": "2017-11-07T09:01:03.969", "value": 82.58}, {"date": "2017-11-07T08:01:03.555", "value": 82.58}, {"date": "2017-11-07T07:01:02.641", "value": 82.58}, {"date": "2017-11-07T06:01:22.221", "value": 82.58}, {"date": "2017-11-07T05:01:14.501", "value": 82.58}, {"date": "2017-11-07T04:01:01.090", "value": 82.58}, {"date": "2017-11-07T03:01:08.655", "value": 82.58}, {"date": "2017-11-07T02:01:21.544", "value": 82.58}, {"date": "2017-11-07T01:00:58.997", "value": 82.58}, {"date": "2017-11-07T00:00:59.810", "value": 82.58}, {"date": "2017-11-06T23:00:57.308", "value": 82.58}, {"date": "2017-11-06T22:01:16.069", "value": 82.58}, {"date": "2017-11-06T21:01:08.987", "value": 82.58}, {"date": "2017-11-06T20:01:51.134", "value": 82.58}, {"date": "2017-11-06T19:01:16.852", "value": 82.58}, {"date": "2017-11-06T18:00:51.681", "value": 82.58}, {"date": "2017-11-06T17:01:12.575", "value": 82.58}, {"date": "2017-11-06T16:01:11.198", "value": 82.58}, {"date": "2017-11-06T15:00:33.708", "value": 82.58}, {"date": "2017-11-06T14:01:08.042", "value": 82.58}, {"date": "2017-11-06T13:00:59.702", "value": 82.58}, {"date": "2017-11-06T12:01:31.016", "value": 82.58}, {"date": "2017-11-06T10:01:00.616", "value": 77.89}, {"date": "2017-11-06T08:01:00.384", "value": 77.89}, {"date": "2017-11-06T07:00:56.919", "value": 77.89}, {"date": "2017-11-06T06:01:24.750", "value": 77.89}, {"date": "2017-11-06T05:01:01.047", "value": 77.89}, {"date": "2017-11-06T04:01:08.222", "value": 77.89}, {"date": "2017-11-06T03:01:09.330", "value": 77.89}, {"date": "2017-11-06T02:01:13.540", "value": 77.89}, {"date": "2017-11-06T01:00:46.452", "value": 77.89}, {"date": "2017-11-06T00:01:00.760", "value": 77.89}, {"date": "2017-11-05T23:01:04.927", "value": 77.89}, {"date": "2017-11-05T22:01:33.353", "value": 77.89}, {"date": "2017-11-05T21:01:07.484", "value": 77.89}, {"date": "2017-11-05T20:01:43.900", "value": 77.89}, {"date": "2017-11-05T19:01:02.819", "value": 77.89}, {"date": "2017-11-05T18:00:47.676", "value": 77.89}, {"date": "2017-11-05T17:01:15.239", "value": 77.89}, {"date": "2017-11-05T16:01:10.381", "value": 77.89}, {"date": "2017-11-05T15:00:31.109", "value": 77.89}, {"date": "2017-11-05T14:01:10.007", "value": 77.89}, {"date": "2017-11-05T13:01:03.262", "value": 77.89}, {"date": "2017-11-05T12:01:07.223", "value": 77.89}, {"date": "2017-11-05T11:00:59.868", "value": 77.89}, {"date": "2017-11-05T10:01:02.178", "value": 80.11}, {"date": "2017-11-05T09:00:58.891", "value": 80.11}, {"date": "2017-11-05T08:01:05.577", "value": 80.11}, {"date": "2017-11-05T07:01:09.581", "value": 80.11}, {"date": "2017-11-05T06:01:03.616", "value": 80.11}, {"date": "2017-11-05T05:01:22.160", "value": 80.11}, {"date": "2017-11-05T04:10:00.046", "value": 80.11}, {"date": "2017-11-05T03:01:29.981", "value": 80.11}, {"date": "2017-11-05T02:01:34.591", "value": 80.11}, {"date": "2017-11-05T01:01:40.263", "value": 80.11}, {"date": "2017-11-05T00:00:44.657", "value": 80.11}, {"date": "2017-11-04T23:01:02.553", "value": 80.11}, {"date": "2017-11-04T22:01:16.041", "value": 80.11}, {"date": "2017-11-04T21:00:50.117", "value": 80.11}, {"date": "2017-11-04T20:01:20.503", "value": 80.11}, {"date": "2017-11-04T19:01:21.506", "value": 80.11}, {"date": "2017-11-04T18:01:17.756", "value": 80.11}, {"date": "2017-11-04T17:00:41.716", "value": 80.11}, {"date": "2017-11-04T16:00:52.153", "value": 80.11}, {"date": "2017-11-04T15:00:53.684", "value": 80.11}, {"date": "2017-11-04T14:00:43.142", "value": 80.11}, {"date": "2017-11-04T13:01:00.822", "value": 80.11}, {"date": "2017-11-04T12:01:02.160", "value": 80.11}, {"date": "2017-11-04T11:01:03.997", "value": 76.16}, {"date": "2017-11-04T10:00:42.306", "value": 76.16}, {"date": "2017-11-04T09:01:19.654", "value": 76.16}, {"date": "2017-11-04T08:01:15.567", "value": 76.16}, {"date": "2017-11-04T07:01:09.370", "value": 76.16}, {"date": "2017-11-04T06:01:07.558", "value": 76.16}, {"date": "2017-11-04T05:01:22.471", "value": 76.16}, {"date": "2017-11-04T04:00:51.745", "value": 76.16}, {"date": "2017-11-04T03:01:22.296", "value": 76.16}, {"date": "2017-11-04T02:01:10.128", "value": 76.16}, {"date": "2017-11-04T01:01:01.363", "value": 76.16}, {"date": "2017-11-04T00:01:17.065", "value": 76.16}, {"date": "2017-11-03T23:01:11.500", "value": 76.16}, {"date": "2017-11-03T21:01:32.669", "value": 76.16}, {"date": "2017-11-03T20:01:36.631", "value": 76.16}, {"date": "2017-11-03T19:01:10.941", "value": 76.16}, {"date": "2017-11-03T17:01:21.915", "value": 76.16}, {"date": "2017-11-03T15:00:58.409", "value": 76.16}, {"date": "2017-11-03T14:01:48.269", "value": 76.16}, {"date": "2017-11-03T13:01:59.034", "value": 76.16}, {"date": "2017-11-03T12:01:30.978", "value": 71.96}, {"date": "2017-11-03T09:01:27.457", "value": 71.96}, {"date": "2017-11-03T08:01:23.929", "value": 71.96}, {"date": "2017-11-03T07:01:38.384", "value": 71.96}, {"date": "2017-11-03T06:01:41.059", "value": 71.96}, {"date": "2017-11-03T05:01:45.468", "value": 71.96}, {"date": "2017-11-03T04:01:43.443", "value": 71.96}, {"date": "2017-11-03T03:01:48.808", "value": 71.96}, {"date": "2017-11-03T02:01:42.748", "value": 71.96}, {"date": "2017-11-03T01:01:38.055", "value": 71.96}, {"date": "2017-11-03T00:02:07.385", "value": 71.96}, {"date": "2017-11-02T23:01:27.358", "value": 71.96}, {"date": "2017-11-02T22:01:33.852", "value": 71.96}, {"date": "2017-11-02T20:32:44.986", "value": 71.96}, {"date": "2017-11-02T18:01:25.116", "value": 71.96}, {"date": "2017-11-02T17:00:29.511", "value": 71.96}, {"date": "2017-11-02T16:00:59.073", "value": 71.96}, {"date": "2017-11-02T15:00:56.178", "value": 71.96}, {"date": "2017-11-02T14:01:04.853", "value": 71.96}, {"date": "2017-11-02T13:01:06.340", "value": 71.96}, {"date": "2017-11-02T12:01:20.997", "value": 71.96}, {"date": "2017-11-02T11:01:24.216", "value": 71.89}, {"date": "2017-11-02T10:01:26.883", "value": 71.89}, {"date": "2017-11-02T09:01:09.487", "value": 71.89}, {"date": "2017-11-02T08:01:30.926", "value": 71.89}, {"date": "2017-11-02T07:01:21.553", "value": 71.89}, {"date": "2017-11-02T06:01:17.521", "value": 71.89}, {"date": "2017-11-02T05:01:01.382", "value": 71.89}, {"date": "2017-11-02T04:01:13.893", "value": 71.89}, {"date": "2017-11-02T03:01:16.661", "value": 71.89}, {"date": "2017-11-02T02:01:17.465", "value": 71.89}, {"date": "2017-11-02T01:01:12.181", "value": 71.89}, {"date": "2017-11-02T00:01:15.456", "value": 71.89}, {"date": "2017-11-01T23:01:24.219", "value": 71.89}, {"date": "2017-11-01T22:01:47.137", "value": 71.89}, {"date": "2017-11-01T21:01:24.266", "value": 71.89}, {"date": "2017-11-01T20:01:38.260", "value": 71.89}, {"date": "2017-11-01T19:00:35.992", "value": 71.89}, {"date": "2017-11-01T18:01:07.250", "value": 71.89}, {"date": "2017-11-01T17:00:45.150", "value": 71.89}, {"date": "2017-11-01T16:00:38.027", "value": 67.44}, {"date": "2017-11-01T15:00:38.444", "value": 67.44}, {"date": "2017-11-01T14:00:38.990", "value": 67.44}, {"date": "2017-11-01T13:00:21.070", "value": 67.44}, {"date": "2017-11-01T12:01:14.704", "value": 67.44}, {"date": "2017-11-01T11:01:24.046", "value": 67.44}, {"date": "2017-11-01T10:00:49.359", "value": 67.44}, {"date": "2017-11-01T09:00:39.449", "value": 67.44}, {"date": "2017-11-01T08:01:09.201", "value": 67.44}, {"date": "2017-11-01T07:00:50.644", "value": 67.44}, {"date": "2017-11-01T06:01:21.930", "value": 67.44}, {"date": "2017-11-01T05:01:04.063", "value": 67.44}, {"date": "2017-11-01T04:01:12.294", "value": 67.44}, {"date": "2017-11-01T03:01:25.415", "value": 67.44}, {"date": "2017-11-01T02:01:50.565", "value": 67.44}, {"date": "2017-11-01T01:01:16.193", "value": 67.44}, {"date": "2017-11-01T00:01:25.303", "value": 67.44}, {"date": "2017-10-31T23:01:18.344", "value": 67.44}, {"date": "2017-10-31T22:01:24.956", "value": 67.44}, {"date": "2017-10-31T21:01:18.071", "value": 67.44}, {"date": "2017-10-31T20:02:07.233", "value": 67.44}, {"date": "2017-10-31T19:00:44.479", "value": 67.44}, {"date": "2017-10-31T18:01:27.665", "value": 67.44}, {"date": "2017-10-31T17:01:07.051", "value": 67.44}, {"date": "2017-10-31T16:01:15.690", "value": 67.44}, {"date": "2017-10-31T15:01:42.762", "value": 67.44}, {"date": "2017-10-31T14:00:51.749", "value": 67.44}, {"date": "2017-10-31T13:00:55.269", "value": 67.44}, {"date": "2017-10-31T12:01:46.806", "value": 67.44}, {"date": "2017-10-31T11:01:41.063", "value": 67.44}, {"date": "2017-10-31T10:01:47.474", "value": 67.44}, {"date": "2017-10-31T01:01:10.264", "value": 67.44}, {"date": "2017-10-31T00:01:06.795", "value": 67.44}, {"date": "2017-10-30T23:01:37.382", "value": 67.44}, {"date": "2017-10-30T22:01:27.919", "value": 67.44}, {"date": "2017-10-30T21:01:35.287", "value": 67.44}, {"date": "2017-10-30T20:02:23.597", "value": 67.44}, {"date": "2017-10-30T19:01:21.080", "value": 67.44}, {"date": "2017-10-30T18:01:19.666", "value": 67.44}, {"date": "2017-10-30T17:00:47.721", "value": 67.44}, {"date": "2017-10-30T16:00:49.874", "value": 67.44}, {"date": "2017-10-30T15:01:18.890", "value": 67.44}, {"date": "2017-10-30T14:00:47.389", "value": 67.44}, {"date": "2017-10-30T13:00:47.342", "value": 67.44}, {"date": "2017-10-30T12:01:41.044", "value": 67.44}, {"date": "2017-10-30T11:01:42.378", "value": 67.44}, {"date": "2017-10-30T10:01:29.020", "value": 67.44}, {"date": "2017-10-30T09:00:40.573", "value": 67.44}, {"date": "2017-10-30T08:01:45.073", "value": 67.44}, {"date": "2017-10-30T07:00:52.478", "value": 67.44}, {"date": "2017-10-30T06:01:34.787", "value": 67.44}, {"date": "2017-10-30T05:01:57.187", "value": 67.44}, {"date": "2017-10-30T04:01:31.954", "value": 67.44}, {"date": "2017-10-30T03:01:32.939", "value": 67.44}, {"date": "2017-10-30T02:01:46.468", "value": 67.44}, {"date": "2017-10-30T01:01:53.130", "value": 67.44}, {"date": "2017-10-30T00:01:46.771", "value": 67.44}, {"date": "2017-10-29T23:01:55.387", "value": 67.44}, {"date": "2017-10-29T22:01:44.615", "value": 67.44}, {"date": "2017-10-29T21:01:22.961", "value": 67.44}, {"date": "2017-10-29T20:02:12.880", "value": 67.44}, {"date": "2017-10-29T19:01:05.164", "value": 67.44}, {"date": "2017-10-29T18:01:08.060", "value": 67.44}, {"date": "2017-10-29T17:01:46.541", "value": 67.44}, {"date": "2017-10-29T16:01:18.541", "value": 67.44}, {"date": "2017-10-29T15:01:04.939", "value": 67.44}, {"date": "2017-10-29T14:01:13.528", "value": 67.44}, {"date": "2017-10-29T13:01:12.008", "value": 67.44}, {"date": "2017-10-29T12:02:03.323", "value": 67.44}, {"date": "2017-10-29T11:02:40.601", "value": 67.44}, {"date": "2017-10-29T00:01:34.020", "value": 66.76}, {"date": "2017-10-28T23:01:30.875", "value": 66.76}, {"date": "2017-10-28T22:01:31.775", "value": 66.76}, {"date": "2017-10-28T21:01:35.420", "value": 66.76}, {"date": "2017-10-28T20:01:55.701", "value": 66.76}, {"date": "2017-10-28T19:01:24.201", "value": 66.76}, {"date": "2017-10-28T18:01:12.757", "value": 66.76}, {"date": "2017-10-28T17:00:57.761", "value": 66.76}, {"date": "2017-10-28T16:01:06.965", "value": 66.76}, {"date": "2017-10-28T15:00:56.828", "value": 66.76}, {"date": "2017-10-28T14:00:37.242", "value": 66.76}, {"date": "2017-10-28T13:00:57.630", "value": 66.76}, {"date": "2017-10-28T12:01:21.679", "value": 66.76}, {"date": "2017-10-28T11:01:29.680", "value": 66.76}, {"date": "2017-10-28T10:01:27.319", "value": 62.94}, {"date": "2017-10-28T09:00:47.913", "value": 62.94}, {"date": "2017-10-28T08:01:38.417", "value": 62.94}, {"date": "2017-10-28T07:01:20.570", "value": 62.94}, {"date": "2017-10-28T06:01:42.838", "value": 62.94}, {"date": "2017-10-28T05:01:20.242", "value": 62.94}, {"date": "2017-10-28T04:01:31.065", "value": 62.94}, {"date": "2017-10-28T03:01:37.072", "value": 62.94}, {"date": "2017-10-28T02:01:37.074", "value": 62.94}, {"date": "2017-10-28T01:01:15.322", "value": 62.94}, {"date": "2017-10-28T00:01:12.303", "value": 62.94}, {"date": "2017-10-27T23:01:30.042", "value": 62.94}, {"date": "2017-10-27T22:01:23.498", "value": 62.94}, {"date": "2017-10-27T21:01:23.631", "value": 62.94}, {"date": "2017-10-27T20:01:50.360", "value": 62.94}, {"date": "2017-10-27T19:01:33.870", "value": 62.94}, {"date": "2017-10-27T18:00:57.186", "value": 62.94}, {"date": "2017-10-27T17:00:44.147", "value": 62.94}, {"date": "2017-10-27T16:00:44.460", "value": 62.94}, {"date": "2017-10-27T15:01:13.178", "value": 62.94}, {"date": "2017-10-27T14:00:35.475", "value": 62.94}, {"date": "2017-10-27T13:01:11.046", "value": 62.94}, {"date": "2017-10-27T12:01:02.962", "value": 62.94}, {"date": "2017-10-27T11:01:10.252", "value": 62.94}, {"date": "2017-10-27T10:01:07.396", "value": 62.94}, {"date": "2017-10-27T09:00:36.167", "value": 62.94}, {"date": "2017-10-27T08:01:17.314", "value": 59.72}, {"date": "2017-10-27T07:01:01.157", "value": 59.72}, {"date": "2017-10-27T06:01:22.104", "value": 59.72}, {"date": "2017-10-27T05:01:14.645", "value": 59.72}, {"date": "2017-10-27T04:01:09.803", "value": 59.72}, {"date": "2017-10-27T03:01:10.421", "value": 59.72}, {"date": "2017-10-27T02:01:19.692", "value": 59.72}, {"date": "2017-10-27T01:01:13.646", "value": 59.72}, {"date": "2017-10-27T00:01:21.118", "value": 59.72}, {"date": "2017-10-26T23:01:20.143", "value": 59.72}, {"date": "2017-10-26T22:01:04.748", "value": 59.72}, {"date": "2017-10-26T21:01:18.344", "value": 59.72}, {"date": "2017-10-26T20:02:03.458", "value": 59.72}, {"date": "2017-10-26T19:01:31.800", "value": 59.72}, {"date": "2017-10-26T18:01:02.128", "value": 59.72}, {"date": "2017-10-26T17:00:43.091", "value": 59.72}, {"date": "2017-10-26T16:00:52.424", "value": 59.72}, {"date": "2017-10-26T15:01:40.059", "value": 59.72}, {"date": "2017-10-26T14:01:06.051", "value": 59.72}, {"date": "2017-10-26T13:00:38.084", "value": 59.72}, {"date": "2017-10-26T12:01:21.735", "value": 59.72}, {"date": "2017-10-26T11:01:34.150", "value": 59.72}, {"date": "2017-10-26T10:01:30.426", "value": 59.72}, {"date": "2017-10-26T09:00:56.266", "value": 59.72}, {"date": "2017-10-26T08:01:30.153", "value": 57.81}, {"date": "2017-10-26T07:00:55.524", "value": 57.81}, {"date": "2017-10-26T06:01:18.781", "value": 57.81}, {"date": "2017-10-26T05:01:06.193", "value": 57.81}, {"date": "2017-10-26T04:01:18.530", "value": 57.81}, {"date": "2017-10-26T03:01:31.450", "value": 57.81}, {"date": "2017-10-26T02:01:58.005", "value": 57.81}, {"date": "2017-10-26T01:01:19.557", "value": 57.81}, {"date": "2017-10-26T00:01:03.564", "value": 57.81}, {"date": "2017-10-25T23:01:24.622", "value": 57.81}, {"date": "2017-10-25T22:01:17.438", "value": 57.81}, {"date": "2017-10-25T21:01:05.124", "value": 57.81}, {"date": "2017-10-25T20:02:09.254", "value": 57.81}, {"date": "2017-10-25T19:01:02.623", "value": 57.81}, {"date": "2017-10-25T18:01:35.261", "value": 57.81}, {"date": "2017-10-25T17:00:38.874", "value": 57.81}, {"date": "2017-10-25T16:01:07.864", "value": 57.81}, {"date": "2017-10-25T15:00:36.959", "value": 57.81}, {"date": "2017-10-25T14:00:55.827", "value": 57.81}, {"date": "2017-10-25T13:00:37.797", "value": 57.81}, {"date": "2017-10-25T12:01:30.766", "value": 57.81}, {"date": "2017-10-25T11:01:05.787", "value": 57.81}, {"date": "2017-10-25T10:00:47.619", "value": 57.81}, {"date": "2017-10-25T09:00:39.900", "value": 57.81}, {"date": "2017-10-25T08:01:16.177", "value": 56.26}, {"date": "2017-10-25T07:00:28.039", "value": 56.26}, {"date": "2017-10-25T06:01:40.179", "value": 56.26}, {"date": "2017-10-25T05:01:34.161", "value": 56.26}, {"date": "2017-10-25T04:01:25.516", "value": 56.26}, {"date": "2017-10-25T03:01:19.742", "value": 56.26}, {"date": "2017-10-25T02:01:25.295", "value": 56.26}, {"date": "2017-10-25T01:01:02.813", "value": 56.26}, {"date": "2017-10-25T00:01:19.340", "value": 56.26}, {"date": "2017-10-24T23:01:13.303", "value": 56.26}, {"date": "2017-10-24T22:01:11.313", "value": 56.26}, {"date": "2017-10-24T21:01:05.072", "value": 56.26}, {"date": "2017-10-24T20:01:52.575", "value": 56.26}, {"date": "2017-10-24T19:00:48.708", "value": 56.26}, {"date": "2017-10-24T18:00:49.256", "value": 56.26}, {"date": "2017-10-24T17:00:35.439", "value": 56.26}, {"date": "2017-10-24T16:00:57.690", "value": 56.26}, {"date": "2017-10-24T15:00:46.222", "value": 56.26}, {"date": "2017-10-24T14:00:47.922", "value": 56.26}, {"date": "2017-10-24T13:01:25.286", "value": 56.26}, {"date": "2017-10-24T12:01:03.934", "value": 56.26}, {"date": "2017-10-24T11:01:34.057", "value": 56.26}, {"date": "2017-10-24T10:01:21.747", "value": 56.26}, {"date": "2017-10-24T09:01:02.944", "value": 53.05}, {"date": "2017-10-24T08:01:13.715", "value": 53.05}, {"date": "2017-10-24T07:01:05.384", "value": 53.05}, {"date": "2017-10-24T06:01:20.778", "value": 53.05}, {"date": "2017-10-24T05:01:25.900", "value": 53.05}, {"date": "2017-10-24T04:01:23.836", "value": 53.05}, {"date": "2017-10-24T03:01:17.889", "value": 53.05}, {"date": "2017-10-24T02:02:08.971", "value": 53.05}, {"date": "2017-10-24T01:01:33.133", "value": 53.05}, {"date": "2017-10-24T00:01:23.103", "value": 53.05}, {"date": "2017-10-23T23:01:36.590", "value": 53.05}, {"date": "2017-10-23T22:01:18.755", "value": 53.05}, {"date": "2017-10-23T21:01:42.027", "value": 53.05}, {"date": "2017-10-23T20:02:01.343", "value": 53.05}, {"date": "2017-10-23T19:00:52.744", "value": 53.05}, {"date": "2017-10-23T18:01:07.016", "value": 53.05}, {"date": "2017-10-23T17:01:07.561", "value": 53.05}, {"date": "2017-10-23T16:00:45.470", "value": 53.05}, {"date": "2017-10-23T15:00:47.105", "value": 53.05}, {"date": "2017-10-23T14:01:00.838", "value": 53.05}, {"date": "2017-10-23T13:00:58.367", "value": 53.05}, {"date": "2017-10-23T12:01:43.988", "value": 53.05}, {"date": "2017-10-23T11:01:36.763", "value": 53.05}, {"date": "2017-10-23T10:01:04.831", "value": 53.05}, {"date": "2017-10-23T09:00:53.258", "value": 53.05}, {"date": "2017-10-23T08:01:30.690", "value": 53.36}, {"date": "2017-10-23T07:00:51.618", "value": 53.36}, {"date": "2017-10-23T06:01:24.499", "value": 53.36}, {"date": "2017-10-23T05:01:19.158", "value": 53.36}, {"date": "2017-10-23T04:01:44.888", "value": 53.36}, {"date": "2017-10-23T03:01:25.499", "value": 53.36}, {"date": "2017-10-23T02:01:21.336", "value": 53.36}, {"date": "2017-10-23T01:00:57.314", "value": 53.36}, {"date": "2017-10-23T00:01:17.628", "value": 53.36}, {"date": "2017-10-22T23:01:29.131", "value": 53.36}, {"date": "2017-10-22T22:01:23.648", "value": 53.36}, {"date": "2017-10-22T21:01:20.099", "value": 53.36}, {"date": "2017-10-22T20:01:29.483", "value": 53.36}, {"date": "2017-10-22T19:01:05.850", "value": 53.36}, {"date": "2017-10-22T18:00:46.962", "value": 53.36}, {"date": "2017-10-22T17:00:59.759", "value": 53.36}, {"date": "2017-10-22T16:01:02.664", "value": 53.36}, {"date": "2017-10-22T15:01:09.614", "value": 53.36}, {"date": "2017-10-22T14:01:16.576", "value": 53.36}, {"date": "2017-10-22T13:01:27.798", "value": 53.36}, {"date": "2017-10-22T12:01:20.778", "value": 53.36}, {"date": "2017-10-22T11:01:29.847", "value": 53.36}, {"date": "2017-10-22T10:01:19.273", "value": 53.36}, {"date": "2017-10-22T09:01:20.527", "value": 53.36}, {"date": "2017-10-22T08:01:28.169", "value": 51.82}, {"date": "2017-10-22T07:01:25.685", "value": 51.82}, {"date": "2017-10-22T06:01:11.019", "value": 51.82}, {"date": "2017-10-22T05:00:57.913", "value": 51.82}, {"date": "2017-10-22T04:00:50.097", "value": 51.82}, {"date": "2017-10-22T03:01:04.548", "value": 51.82}, {"date": "2017-10-22T02:01:18.727", "value": 51.82}, {"date": "2017-10-22T01:01:00.407", "value": 51.82}, {"date": "2017-10-22T00:01:10.779", "value": 51.82}, {"date": "2017-10-21T23:01:23.353", "value": 51.82}, {"date": "2017-10-21T22:00:55.639", "value": 51.82}, {"date": "2017-10-21T21:01:28.950", "value": 51.82}, {"date": "2017-10-21T20:02:02.390", "value": 51.82}, {"date": "2017-10-21T19:00:44.819", "value": 51.82}, {"date": "2017-10-21T18:00:52.602", "value": 51.82}, {"date": "2017-10-21T17:01:08.554", "value": 51.82}, {"date": "2017-10-21T16:00:30.058", "value": 51.82}, {"date": "2017-10-21T15:00:51.391", "value": 51.82}, {"date": "2017-10-21T14:00:44.162", "value": 51.82}, {"date": "2017-10-21T13:00:24.829", "value": 51.82}, {"date": "2017-10-21T12:01:12.437", "value": 51.82}, {"date": "2017-10-21T11:00:59.751", "value": 51.82}, {"date": "2017-10-21T10:01:39.292", "value": 51.82}, {"date": "2017-10-21T09:00:48.891", "value": 51.82}, {"date": "2017-10-21T08:01:03.374", "value": 49.1}, {"date": "2017-10-21T07:00:51.069", "value": 49.1}, {"date": "2017-10-21T06:01:05.353", "value": 49.1}, {"date": "2017-10-21T05:01:21.905", "value": 49.1}, {"date": "2017-10-21T04:01:26.739", "value": 49.1}, {"date": "2017-10-21T03:01:18.943", "value": 49.1}, {"date": "2017-10-21T02:01:18.809", "value": 49.1}, {"date": "2017-10-21T01:01:26.273", "value": 49.1}, {"date": "2017-10-21T00:01:09.420", "value": 49.1}, {"date": "2017-10-20T23:01:31.674", "value": 49.1}, {"date": "2017-10-20T22:10:54.809", "value": 49.1}, {"date": "2017-10-20T22:01:32.832", "value": 49.1}, {"date": "2017-10-20T21:01:21.469", "value": 49.1}, {"date": "2017-10-20T20:01:01.429", "value": 49.1}, {"date": "2017-10-20T19:00:57.108", "value": 49.1}, {"date": "2017-10-20T18:01:21.219", "value": 49.1}, {"date": "2017-10-20T17:00:49.355", "value": 49.1}, {"date": "2017-10-20T16:01:01.317", "value": 49.1}, {"date": "2017-10-20T15:01:34.318", "value": 49.1}, {"date": "2017-10-20T14:01:36.786", "value": 49.1}, {"date": "2017-10-20T13:01:18.005", "value": 49.1}, {"date": "2017-10-20T12:01:36.072", "value": 49.1}, {"date": "2017-10-20T11:01:19.210", "value": 49.1}, {"date": "2017-10-20T10:00:53.392", "value": 49.1}, {"date": "2017-10-20T09:01:04.598", "value": 46.57}, {"date": "2017-10-20T08:02:10.467", "value": 46.57}, {"date": "2017-10-20T07:01:20.505", "value": 46.57}, {"date": "2017-10-20T06:01:10.823", "value": 46.57}, {"date": "2017-10-20T05:01:13.078", "value": 46.57}, {"date": "2017-10-20T04:01:14.402", "value": 46.57}, {"date": "2017-10-20T03:01:14.510", "value": 46.57}, {"date": "2017-10-20T02:02:08.904", "value": 46.57}, {"date": "2017-10-20T01:01:41.449", "value": 46.57}, {"date": "2017-10-20T00:00:54.249", "value": 46.57}, {"date": "2017-10-19T23:01:00.999", "value": 46.57}, {"date": "2017-10-19T22:01:42.851", "value": 46.57}, {"date": "2017-10-19T21:01:13.632", "value": 46.57}, {"date": "2017-10-19T20:02:14.971", "value": 46.57}, {"date": "2017-10-19T19:01:21.996", "value": 46.57}, {"date": "2017-10-19T18:01:17.768", "value": 46.57}, {"date": "2017-10-19T17:00:55.859", "value": 46.57}, {"date": "2017-10-19T16:00:41.229", "value": 46.57}, {"date": "2017-10-19T15:00:51.684", "value": 46.57}, {"date": "2017-10-19T14:01:23.428", "value": 46.57}, {"date": "2017-10-19T13:00:36.187", "value": 46.57}, {"date": "2017-10-19T12:00:54.985", "value": 46.57}, {"date": "2017-10-19T11:01:28.324", "value": 46.57}, {"date": "2017-10-19T10:00:52.634", "value": 46.57}, {"date": "2017-10-19T09:01:34.849", "value": 46.57}, {"date": "2017-10-19T08:01:18.474", "value": 45.95}, {"date": "2017-10-19T07:01:35.757", "value": 45.95}, {"date": "2017-10-19T06:00:59.390", "value": 45.95}, {"date": "2017-10-19T05:01:30.328", "value": 45.95}, {"date": "2017-10-19T04:01:06.516", "value": 45.95}, {"date": "2017-10-19T03:01:02.239", "value": 45.95}, {"date": "2017-10-19T02:01:18.226", "value": 45.95}, {"date": "2017-10-19T01:01:15.770", "value": 45.95}, {"date": "2017-10-19T00:01:19.051", "value": 45.95}, {"date": "2017-10-18T23:01:16.623", "value": 45.95}, {"date": "2017-10-18T22:01:08.996", "value": 45.95}, {"date": "2017-10-18T21:01:27.663", "value": 45.95}, {"date": "2017-10-18T20:01:52.802", "value": 45.95}, {"date": "2017-10-18T19:00:54.141", "value": 45.95}, {"date": "2017-10-18T18:00:49.109", "value": 45.95}, {"date": "2017-10-18T17:00:28.109", "value": 45.95}, {"date": "2017-10-18T16:00:59.315", "value": 45.95}, {"date": "2017-10-18T15:01:45.760", "value": 45.95}, {"date": "2017-10-18T14:01:38.019", "value": 45.95}, {"date": "2017-10-18T13:01:43.915", "value": 45.95}, {"date": "2017-10-18T12:02:56.305", "value": 45.95}, {"date": "2017-10-18T11:01:56.143", "value": 45.95}, {"date": "2017-10-18T10:02:38.528", "value": 45.95}, {"date": "2017-10-18T09:02:08.908", "value": 45.95}, {"date": "2017-10-18T08:02:00.213", "value": 42.68}, {"date": "2017-10-18T07:03:15.741", "value": 42.68}, {"date": "2017-10-18T06:02:20.342", "value": 42.68}, {"date": "2017-10-18T05:03:24.020", "value": 42.68}, {"date": "2017-10-18T04:02:26.920", "value": 42.68}, {"date": "2017-10-18T03:02:29.666", "value": 42.68}, {"date": "2017-10-18T02:02:00.764", "value": 42.68}, {"date": "2017-10-18T01:01:36.601", "value": 42.68}, {"date": "2017-10-18T00:02:01.719", "value": 42.68}, {"date": "2017-10-17T23:01:31.070", "value": 42.68}, {"date": "2017-10-17T22:01:12.845", "value": 42.68}, {"date": "2017-10-17T21:01:47.277", "value": 42.68}, {"date": "2017-10-17T20:02:50.314", "value": 42.68}, {"date": "2017-10-17T19:01:01.242", "value": 42.68}, {"date": "2017-10-17T18:01:27.635", "value": 42.68}, {"date": "2017-10-17T17:00:36.634", "value": 42.68}, {"date": "2017-10-17T16:01:12.259", "value": 42.68}, {"date": "2017-10-17T15:01:00.322", "value": 42.68}, {"date": "2017-10-17T14:00:55.413", "value": 42.68}, {"date": "2017-10-17T13:01:06.398", "value": 42.68}, {"date": "2017-10-17T12:01:18.569", "value": 42.68}, {"date": "2017-10-17T10:00:58.387", "value": 42.68}, {"date": "2017-10-17T09:01:23.153", "value": 42.68}, {"date": "2017-10-17T08:01:51.923", "value": 42.68}, {"date": "2017-10-17T07:01:12.270", "value": 43.29}, {"date": "2017-10-17T06:03:17.504", "value": 43.29}, {"date": "2017-10-17T05:01:21.103", "value": 43.29}, {"date": "2017-10-17T04:01:31.903", "value": 43.29}, {"date": "2017-10-17T03:01:19.234", "value": 43.29}, {"date": "2017-10-17T02:01:40.167", "value": 43.29}, {"date": "2017-10-17T01:01:29.168", "value": 43.29}, {"date": "2017-10-17T00:02:13.954", "value": 43.29}, {"date": "2017-10-16T23:01:36.568", "value": 43.29}, {"date": "2017-10-16T22:01:46.227", "value": 43.29}, {"date": "2017-10-16T21:01:59.344", "value": 43.29}, {"date": "2017-10-16T20:01:44.346", "value": 43.29}, {"date": "2017-10-16T19:01:21.255", "value": 43.29}, {"date": "2017-10-16T18:00:52.502", "value": 43.29}, {"date": "2017-10-16T17:02:10.967", "value": 43.29}, {"date": "2017-10-16T15:39:51.103", "value": 43.29}, {"date": "2017-10-12T16:00:55.162", "value": 37.12}, {"date": "2017-10-12T15:00:58.190", "value": 37.12}, {"date": "2017-10-12T14:01:24.313", "value": 37.12}, {"date": "2017-10-12T13:00:35.979", "value": 37.12}, {"date": "2017-10-12T12:01:16.456", "value": 37.12}, {"date": "2017-10-12T11:01:46.463", "value": 37.12}, {"date": "2017-10-12T09:01:15.444", "value": 37.12}, {"date": "2017-10-12T08:01:05.328", "value": 37.12}, {"date": "2017-10-12T07:01:04.507", "value": 33.6}, {"date": "2017-10-12T06:01:24.393", "value": 33.6}, {"date": "2017-10-12T05:01:04.169", "value": 33.6}, {"date": "2017-10-12T04:01:05.446", "value": 33.6}, {"date": "2017-10-12T03:00:59.579", "value": 33.6}, {"date": "2017-10-12T02:01:30.827", "value": 33.6}, {"date": "2017-10-12T01:00:59.640", "value": 33.6}, {"date": "2017-10-12T00:01:25.380", "value": 33.6}, {"date": "2017-10-11T23:00:46.796", "value": 33.6}, {"date": "2017-10-11T22:01:05.042", "value": 33.6}, {"date": "2017-10-11T21:00:36.435", "value": 33.6}, {"date": "2017-10-11T20:02:27.072", "value": 33.6}, {"date": "2017-10-11T19:01:06.675", "value": 33.6}, {"date": "2017-10-11T18:01:48.559", "value": 33.6}, {"date": "2017-10-11T16:00:55.399", "value": 33.6}, {"date": "2017-10-11T15:01:02.640", "value": 33.6}, {"date": "2017-10-11T14:01:16.907", "value": 33.6}, {"date": "2017-10-11T13:00:55.979", "value": 33.6}, {"date": "2017-10-11T12:01:13.332", "value": 33.6}, {"date": "2017-10-11T11:01:19.180", "value": 33.6}, {"date": "2017-10-11T10:01:02.509", "value": 33.6}, {"date": "2017-10-11T09:02:41.818", "value": 33.6}, {"date": "2017-10-11T08:01:51.867", "value": 33.6}, {"date": "2017-10-11T07:01:22.763", "value": 32.79}, {"date": "2017-10-11T06:01:45.515", "value": 32.79}, {"date": "2017-10-11T05:01:42.288", "value": 32.79}, {"date": "2017-10-11T04:01:43.718", "value": 32.79}, {"date": "2017-10-11T03:10:12.713", "value": 32.79}, {"date": "2017-10-11T02:02:07.317", "value": 32.79}, {"date": "2017-10-11T01:01:59.230", "value": 32.79}, {"date": "2017-10-11T00:00:59.712", "value": 32.79}, {"date": "2017-10-10T23:01:05.320", "value": 32.79}, {"date": "2017-10-10T22:00:42.220", "value": 32.79}, {"date": "2017-10-10T21:56:36.814", "value": 32.79}, {"date": "2017-10-06T20:00:00.000", "value": 24.09}, {"date": "2017-10-05T20:00:00.000", "value": 24.09}, {"date": "2017-10-04T20:00:00.000", "value": 26.13}, {"date": "2017-10-03T20:00:00.000", "value": 22.54}, {"date": "2017-10-02T20:00:00.000", "value": 22.54}, {"date": "2017-10-01T20:00:00.000", "value": 14.21}, {"date": "2017-09-30T20:00:00.000", "value": 11.3}, {"date": "2017-09-29T20:00:00.000", "value": 10.7}, {"date": "2017-09-28T20:00:00.000", "value": 96.0}, {"date": "2017-09-27T20:00:00.000", "value": 28.0}], "graph_data": [{"date": "2017-09-27T20:00:00.000", "value": 28.0}, {"date": "2017-09-28T20:00:00.000", "value": 96.0}, {"date": "2017-09-29T20:00:00.000", "value": 10.7}, {"date": "2017-09-30T20:00:00.000", "value": 11.3}, {"date": "2017-10-01T20:00:00.000", "value": 14.21}, {"date": "2017-10-03T20:00:00.000", "value": 22.54}, {"date": "2017-10-04T20:00:00.000", "value": 26.13}, {"date": "2017-10-06T20:00:00.000", "value": 24.09}, {"date": "2017-10-11T07:01:22.763", "value": 32.79}, {"date": "2017-10-12T07:01:04.507", "value": 33.6}, {"date": "2017-10-12T16:00:55.162", "value": 37.12}, {"date": "2017-10-17T07:01:12.270", "value": 43.29}, {"date": "2017-10-18T08:02:00.213", "value": 42.68}, {"date": "2017-10-19T08:01:18.474", "value": 45.95}, {"date": "2017-10-20T09:01:04.598", "value": 46.57}, {"date": "2017-10-21T08:01:03.374", "value": 49.1}, {"date": "2017-10-22T08:01:28.169", "value": 51.82}, {"date": "2017-10-23T08:01:30.690", "value": 53.36}, {"date": "2017-10-24T09:01:02.944", "value": 53.05}, {"date": "2017-10-25T08:01:16.177", "value": 56.26}, {"date": "2017-10-26T08:01:30.153", "value": 57.81}, {"date": "2017-10-27T08:01:17.314", "value": 59.72}, {"date": "2017-10-28T10:01:27.319", "value": 62.94}, {"date": "2017-10-29T00:01:34.020", "value": 66.76}, {"date": "2017-11-01T16:00:38.027", "value": 67.44}, {"date": "2017-11-02T11:01:24.216", "value": 71.89}, {"date": "2017-11-03T12:01:30.978", "value": 71.96}, {"date": "2017-11-04T11:01:03.997", "value": 76.16}, {"date": "2017-11-05T10:01:02.178", "value": 80.11}, {"date": "2017-11-06T10:01:00.616", "value": 77.89}, {"date": "2017-11-07T11:01:26.991", "value": 82.58}, {"date": "2017-11-08T09:01:06.067", "value": 87.0}, {"date": "2017-11-09T11:01:11.956", "value": 87.58}, {"date": "2017-11-10T10:01:01.887", "value": 92.4}, {"date": "2017-11-11T09:01:02.400", "value": 91.04}, {"date": "2017-11-12T10:01:16.955", "value": 94.5}, {"date": "2017-11-13T11:02:04.794", "value": 58.18}], "label": "Cell Towers", "last_value": "58.18%", "slug": "tower"};
+      generateChart(path);
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-37217294-7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-37217294-7');
+</script>
+
+  </body>
+</html>
